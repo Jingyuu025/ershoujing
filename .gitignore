@@ -6,7 +6,3 @@ data/
 *.iml
 .DS_Store
 gulp/
-.idea/workspace.xml
-.idea/vcs.xml
-.idea/*
-
