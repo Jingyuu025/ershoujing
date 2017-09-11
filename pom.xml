@@ -1,0 +1,245 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.jingyuu</groupId>
+    <artifactId>ershoujing</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <parent>
+        <groupId>com.jingyuu</groupId>
+        <artifactId>jingyuu-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+        <module>ershoujing-common</module>
+        <module>ershoujing-dao</module>
+        <module>ershoujing-service</module>
+        <module>ershoujing-server</module>
+    </modules>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <ershoujing.version>0.0.1-SNAPSHOT</ershoujing.version>
+
+        <groovy-all.version>2.4.7</groovy-all.version>
+        <spock-core.version>1.1-groovy-2.4-rc-3</spock-core.version>
+        <spock-spring.version>1.1-groovy-2.4-rc-3</spock-spring.version>
+    </properties>
+
+
+    <name>ershoujing Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Account Center -->
+            <dependency>
+                <groupId>com.jingyuu</groupId>
+                <artifactId>ershoujing-common</artifactId>
+                <version>${ershoujing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jingyuu</groupId>
+                <artifactId>ershoujing-dao</artifactId>
+                <version>${ershoujing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jingyuu</groupId>
+                <artifactId>ershoujing-service</artifactId>
+                <version>${ershoujing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jingyuu</groupId>
+                <artifactId>ershoujing-web</artifactId>
+                <version>${ershoujing.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>io.tbud</groupId>
+                <artifactId>spring-boot-starter-dubbo</artifactId>
+                <version>1.1.6-RELEASE</version>
+            </dependency>
+
+            <!-- Test -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>1.4.3.RELEASE</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy-all.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>${spock-core.version}</version>
+            </dependency>
+
+            <!-- Swagger -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>2.5.0</version>
+            </dependency>
+
+            <!-- PageHelper-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>1.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>5.0.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>1.1.3</version>
+                <type>jar</type>
+            </dependency>
+
+            <!-- JPA -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>1.5.6.RELEASE</version>
+            </dependency>
+
+            <!-- DBCP -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>2.1.1</version>
+            </dependency>
+
+            <!-- 又拍云-->
+            <dependency>
+                <groupId>com.upyun</groupId>
+                <artifactId>java-sdk</artifactId>
+                <version>3.16</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.3</version>
+            </dependency>
+
+            <!-- Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://127.0.0.1:8888/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>releases</id>
+            <url>http://127.0.0.1:8888/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>snapshots</id>
+            <url>http://127.0.0.1:8888/nexus/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>thirdparty</id>
+            <url>http://127.0.0.1:8888/nexus/content/repositories/thirdparty</url>
+        </repository>
+        <repository>
+            <id>releases</id>
+            <url>http://127.0.0.1:8888/nexus/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>http://127.0.0.1:8888/nexus/content/repositories/central</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.10.3</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                            <configuration>
+                                <encoding>UTF-8</encoding>
+                                <charset>UTF-8</charset>
+                                <additionalparam>-Xdoclint:none</additionalparam>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>springloaded</artifactId>
+                            <version>1.2.3.RELEASE</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

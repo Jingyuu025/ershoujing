@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ershoujing-common" />
+        <module name="ershoujing-dao" />
+        <module name="ershoujing-server" />
+        <module name="ershoujing-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ershoujing" target="1.8" />
+      <module name="ershoujing-common" target="1.8" />
+      <module name="ershoujing-dao" target="1.8" />
+      <module name="ershoujing-server" target="1.8" />
+      <module name="ershoujing-service" target="1.8" />
+      <module name="ershoujing-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ershoujing.iml" filepath="$PROJECT_DIR$/ershoujing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ershoujing-common/ershoujing-common.iml" filepath="$PROJECT_DIR$/ershoujing-common/ershoujing-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ershoujing-dao/ershoujing-dao.iml" filepath="$PROJECT_DIR$/ershoujing-dao/ershoujing-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ershoujing-server/ershoujing-server.iml" filepath="$PROJECT_DIR$/ershoujing-server/ershoujing-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ershoujing-service/ershoujing-service.iml" filepath="$PROJECT_DIR$/ershoujing-service/ershoujing-service.iml" />
+    </modules>
+  </component>
+</project>

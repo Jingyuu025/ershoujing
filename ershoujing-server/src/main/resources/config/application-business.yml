@@ -1,0 +1,18 @@
+role:
+  nfq:
+    - CASH_ACCOUNT
+
+  funder:
+    - CASH_ACCOUNT
+    - GUARANTEE_ACCOUNT
+
+  customer:
+    - CASH_ACCOUNT
+    - CREDIT_ACCOUNT
+    - GUARANTEE_ACCOUNT
+
+  customer-manager:
+    - CASH_ACCOUNT
+
+  distributor:
+    - CASH_ACCOUNT

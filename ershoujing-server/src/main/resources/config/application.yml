@@ -1,0 +1,70 @@
+application:
+  name: Er shou jing
+  description: A product of Jingyuu which provide a second 3c product recycling ！
+banner:
+  location: /config/banner.txt
+
+server:
+  port: 8008
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: Er shou jing
+
+  profiles:
+    include:
+      - business
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/jingyuu?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: sa
+    driver-class-name: com.mysql.jdbc.Driver
+    dbcp2:
+      validation-query: select 1
+      test-on-borrow: true
+      test-on-return: false
+      max-total: 20
+      max-idle: 5
+      min-idle: 5
+      max-wait-millis: 30000
+      test-while-idle: true
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+  multipart:
+    encoding: UTF-8
+    memorySize: 4096
+
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+  jackson:
+    time-zone: GMT+8
+    date-format: ${spring.mvc.date-format}
+
+  messages:
+    basename: config/message
+    cache-seconds: -1
+    encoding: UTF-8
+
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+
