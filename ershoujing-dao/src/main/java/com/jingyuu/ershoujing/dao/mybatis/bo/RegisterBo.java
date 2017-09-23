@@ -1,8 +1,6 @@
 package com.jingyuu.ershoujing.dao.mybatis.bo;
 
 import com.jingyuu.ershoujing.common.base.BaseBean;
-import com.jingyuu.ershoujing.common.exception.JyuException;
-import com.jingyuu.ershoujing.common.statics.enums.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,21 +14,25 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterBo extends BaseBean implements Check {
-    // 手机号
+public class RegisterBo extends BaseBean {
+    /**
+     * 手机号
+     */
     private String telephone;
 
-    // 密码
-    private String password;
+    /**
+     * 密码
+     * 使用transient关键字，指定GSON解析时过滤该字段
+     */
+    private transient String password;
 
-    // 角色
-    private RoleEnum roleEnum;
+    /**
+     * 验证码
+     */
+    private String code;
 
-    // 注册IP
+    /**
+     * 注册IP
+     */
     private String ip;
-
-    @Override
-    public void checkParam() throws JyuException {
-
-    }
 }

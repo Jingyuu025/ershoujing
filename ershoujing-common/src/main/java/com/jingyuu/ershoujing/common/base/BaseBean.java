@@ -1,5 +1,6 @@
 package com.jingyuu.ershoujing.common.base;
 
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 
@@ -35,5 +36,15 @@ public class BaseBean implements Serializable {
      */
     public <T> T toBean(Class<T> requiredType) {
         return this.fromBean(this, requiredType);
+    }
+
+
+    /**
+     * 转换为json字符串
+     *
+     * @return
+     */
+    public final String toJsonString() {
+        return new Gson().toJson(this);
     }
 }

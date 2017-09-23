@@ -20,6 +20,9 @@ public enum ErrorEnum {
     HTTP_MESSAGE_NOT_READABLE                   (0x1010, "HTTP消息不可读"),
     DATA_UPDATE_FAILED                          (0x1011, "数据更新失败"),
 
+
+    USER_SESSION_TOKEN_EXPIRED                  (0x2001, "用户访问令牌过期"),
+
     ;
     private final Integer errCode;
 

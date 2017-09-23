@@ -24,7 +24,7 @@ public class SwaggerConfig {
     @Bean
     public Docket hadesApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("account-center-api")
+                .groupName("ershoujing-api")
                 .apiInfo(apiInfo())
                 .select()
                 .paths(hadesPaths())
@@ -33,15 +33,17 @@ public class SwaggerConfig {
 
     private Predicate<String> hadesPaths() {
         return or(
-                regex("/account/cash.*")           // 现金账户
+                regex("/system.*"),     // 系统
+                regex("/user.*")        // 用户
+
         );
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Account Center API-账户中心接口")
-                .description("账户中心接口")
-                .contact(new Contact("Owen", "http://hades.nongfenqi.net", "gekunjin@nongfenqi.com"))
+                .title("Er shou jing")
+                .description("二手鲸接口服务")
+                .contact(new Contact("Owen", "http://www.jingyuu.com", "i-owen@live.cn"))
                 .version("1.0.0")
                 .build();
     }

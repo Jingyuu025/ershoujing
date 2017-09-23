@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jingyuu.ershoujing.dao.mybatis.mapper.SmsCodeMapper">
+
+    <select id="listValidSmsCode"
+            parameterType="com.jingyuu.ershoujing.dao.mybatis.bo.SmsCodeBo"
+            resultType="com.jingyuu.ershoujing.dao.jpa.entity.SmsCodeEntity">
+        SELECT
+        t.id,
+        t.telephone,
+        t.code,
+        t.serial_number AS serialNumber,
+        t.expire_in AS expireIn
+        FROM
+        jyu_sms_code t
+        WHERE
+        t.state = 1 -- 待验证
+        AND t.expire_time >= now() -- 未过期
+        AND t.telephone = #{telephone}
+        AND t.business_type = #{businessType} -- 业务类型
+        ORDER BY t.add_time DESC
+    </select>
+</mapper>
+

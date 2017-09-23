@@ -11,9 +11,6 @@ server:
     uri-encoding: UTF-8
 
 spring:
-  application:
-    name: Er shou jing
-
   profiles:
     include:
       - business
@@ -55,6 +52,16 @@ spring:
     cache-seconds: -1
     encoding: UTF-8
 
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: jingyuu
+    pool:
+      max-idle: 100
+      min-idle: 1
+      max-active: 1000
+      max-wait: -1
+
   jpa:
     database: MYSQL
     show-sql: true
@@ -65,6 +72,15 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+
+#业务相关
+## 指定短信验证码多长时间后失效，单位为秒
+sms:
+  code:
+    expire-in: 600
+
 
 
 

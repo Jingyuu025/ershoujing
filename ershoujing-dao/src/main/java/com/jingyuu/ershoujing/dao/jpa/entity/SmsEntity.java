@@ -1,45 +1,34 @@
 package com.jingyuu.ershoujing.dao.jpa.entity;
 
+import com.jingyuu.ershoujing.dao.base.BaseIdentityEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
+ * 短信
+ *
  * @author owen
- * @date 2017-09-08
+ * @date 2017-09-15
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "jyu_message_sms")
-public class SmsEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer id;
-
-    @Column(name = "telephone", columnDefinition = "VARCHAR(32) NOT NULL COMMENT '手机号'")
+@Table(name = "jyu_sms")
+public class SmsEntity extends BaseIdentityEntity {
+    @Column(name = "telephone", columnDefinition = "VARCHAR(16) NOT NULL COMMENT '手机号'")
     private String telephone;
 
-    @Column(name = "business_type", columnDefinition = "INT NOT NULL COMMENT '业务类型 (1: 经销商微信账号绑定)'")
-    private Integer businessType;
+    @Column(name = "content", columnDefinition = "VARCHAR(128) NOT NULL COMMENT '内容'")
+    private String content;
 
-    @Column(name = "code", columnDefinition = "VARCHAR(64) NOT NULL COMMENT '验证码'")
-    private String code;
-
-    @Column(name = "add_time", columnDefinition = "DATETIME NOT NULL COMMENT '添加时间'")
-    private Date addTime;
-
-    @Column(name = "validity", columnDefinition = "INT NOT NULL COMMENT '有效期,单位为分钟'")
-    private Integer validity;
-
-    @Column(name = "verify_status", columnDefinition = "INT NOT NULL DEFAULT 1 COMMENT '验证状态 1:待验证 2:已验证'")
-    private Integer verifyStatus;
+    @Column(name = "state", columnDefinition = "SMALLINT(6) NOT NULL COMMENT '状态 1：发送处理中 2：发送成功 3：发送失败'")
+    private Integer state;
 }
-

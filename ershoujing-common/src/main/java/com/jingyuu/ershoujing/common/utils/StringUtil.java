@@ -20,7 +20,7 @@ package com.jingyuu.ershoujing.common.utils;
 /**
  * 有关字符串处理的工具类。
  * <p>
- * 这个类中的每个方法都可以“安全”地处理<code>null</code>，而不会抛出<code>NullPointerException</code>。
+ * 这个类中的每个方法都可以“安全”地处理<sessionId>null</sessionId>，而不会抛出<sessionId>NullPointerException</sessionId>。
  * </p>
  *
  * @author Michael Zhou
@@ -37,7 +37,7 @@ public class StringUtil {
      * 取得字符串的长度。
      *
      * @param str 要取长度的字符串
-     * @return 如果字符串为<code>null</code>，则返回<code>0</code>。否则返回字符串的长度。
+     * @return 如果字符串为<sessionId>null</sessionId>，则返回<sessionId>0</sessionId>。否则返回字符串的长度。
      */
     public static int getLength(String str) {
         return str == null ? 0 : str.length();
@@ -56,7 +56,7 @@ public class StringUtil {
      *
      * @param str1 要比较的字符串1
      * @param str2 要比较的字符串2
-     * @return 如果两个字符串相同，或者都是<code>null</code>，则返回<code>true</code>
+     * @return 如果两个字符串相同，或者都是<sessionId>null</sessionId>，则返回<sessionId>true</sessionId>
      */
     public static boolean isEqualsIgnoreCase(String str1, String str2) {
         if (str1 == null) {
@@ -76,7 +76,7 @@ public class StringUtil {
     // ==========================================================================
 
     /**
-     * 检查字符串是否为<code>null</code>或空字符串<code>""</code>。
+     * 检查字符串是否为<sessionId>null</sessionId>或空字符串<sessionId>""</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.isEmpty(null)      = true
@@ -87,14 +87,14 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要检查的字符串
-     * @return 如果为空, 则返回<code>true</code>
+     * @return 如果为空, 则返回<sessionId>true</sessionId>
      */
     public static boolean isEmpty(String str) {
         return str == null || str.length() == 0;
     }
 
     /**
-     * 检查字符串是否是空白：<code>null</code>、空字符串<code>""</code>或只有空白字符。
+     * 检查字符串是否是空白：<sessionId>null</sessionId>、空字符串<sessionId>""</sessionId>或只有空白字符。
      * <p/>
      * <pre>
      * StringUtil.isBlank(null)      = true
@@ -105,7 +105,7 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要检查的字符串
-     * @return 如果为空白, 则返回<code>true</code>
+     * @return 如果为空白, 则返回<sessionId>true</sessionId>
      */
     public static boolean isBlank(String str) {
         int length;
@@ -131,7 +131,7 @@ public class StringUtil {
     // ==========================================================================
 
     /**
-     * 如果字符串是<code>null</code>或空字符串<code>""</code>，则返回指定默认字符串，否则返回字符串本身。
+     * 如果字符串是<sessionId>null</sessionId>或空字符串<sessionId>""</sessionId>，则返回指定默认字符串，否则返回字符串本身。
      * <p/>
      * <pre>
      * StringUtil.defaultIfEmpty(null, "default")  = "default"
@@ -149,7 +149,7 @@ public class StringUtil {
     }
 
     /**
-     * 如果字符串是<code>null</code>或空字符串<code>""</code>，则返回指定默认字符串，否则返回字符串本身。
+     * 如果字符串是<sessionId>null</sessionId>或空字符串<sessionId>""</sessionId>，则返回指定默认字符串，否则返回字符串本身。
      * <p/>
      * <pre>
      * StringUtil.defaultIfBlank(null, "default")  = "default"
@@ -173,7 +173,7 @@ public class StringUtil {
     // ==========================================================================
 
     /**
-     * 除去字符串头尾部的空白，如果字符串是<code>null</code>，依然返回<code>null</code>。
+     * 除去字符串头尾部的空白，如果字符串是<sessionId>null</sessionId>，依然返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.trim(null)          = null
@@ -184,14 +184,14 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要处理的字符串
-     * @return 除去空白的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
+     * @return 除去空白的字符串，如果原字串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String trim(String str) {
         return str == null ? null : str.trim();
     }
 
     /**
-     * 除去字符串头尾部的空白，如果结果字符串是空字符串<code>""</code>，则返回<code>null</code>。
+     * 除去字符串头尾部的空白，如果结果字符串是空字符串<sessionId>""</sessionId>，则返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.trimToNull(null)          = null
@@ -202,8 +202,8 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要处理的字符串
-     * @return 除去空白的字符串，如果原字串为<code>null</code>或结果字符串为<code>""</code>，则返回
-     *         <code>null</code>
+     * @return 除去空白的字符串，如果原字串为<sessionId>null</sessionId>或结果字符串为<sessionId>""</sessionId>，则返回
+     *         <sessionId>null</sessionId>
      */
     public static String trimToNull(String str) {
         if (str == null) {
@@ -220,7 +220,7 @@ public class StringUtil {
     }
 
     /**
-     * 除去字符串头尾部的空白，如果字符串是<code>null</code>，则返回空字符串<code>""</code>。
+     * 除去字符串头尾部的空白，如果字符串是<sessionId>null</sessionId>，则返回空字符串<sessionId>""</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.trimToEmpty(null)          = ""
@@ -231,8 +231,8 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要处理的字符串
-     * @return 除去空白的字符串，如果原字串为<code>null</code>或结果字符串为<code>""</code>，则返回
-     *         <code>null</code>
+     * @return 除去空白的字符串，如果原字串为<sessionId>null</sessionId>或结果字符串为<sessionId>""</sessionId>，则返回
+     *         <sessionId>null</sessionId>
      */
     public static String trimToEmpty(String str) {
         if (str == null) {
@@ -243,7 +243,7 @@ public class StringUtil {
     }
 
     /**
-     * 除去字符串头尾部的指定字符，如果字符串是<code>null</code>，依然返回<code>null</code>。
+     * 除去字符串头尾部的指定字符，如果字符串是<sessionId>null</sessionId>，依然返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.trim(null, *)          = null
@@ -256,17 +256,17 @@ public class StringUtil {
      * </pre>
      *
      * @param str        要处理的字符串
-     * @param stripChars 要除去的字符，如果为<code>null</code>表示除去空白字符
-     * @return 除去指定字符后的的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
+     * @param stripChars 要除去的字符，如果为<sessionId>null</sessionId>表示除去空白字符
+     * @return 除去指定字符后的的字符串，如果原字串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String trim(String str, String stripChars) {
         return trim(str, stripChars, 0);
     }
 
     /**
-     * 除去字符串头部的空白，如果字符串是<code>null</code>，则返回<code>null</code>。
+     * 除去字符串头部的空白，如果字符串是<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>。
      * <p>
-     * 注意，和<code>String.trim</code>不同，此方法使用<code>Character.isWhitespace</code>
+     * 注意，和<sessionId>String.trim</sessionId>不同，此方法使用<sessionId>Character.isWhitespace</sessionId>
      * 来判定空白， 因而可以除去英文字符集之外的其它空白，如中文空格。
      * <p/>
      * <pre>
@@ -281,15 +281,15 @@ public class StringUtil {
      * </p>
      *
      * @param str 要处理的字符串
-     * @return 除去空白的字符串，如果原字串为<code>null</code>或结果字符串为<code>""</code>，则返回
-     *         <code>null</code>
+     * @return 除去空白的字符串，如果原字串为<sessionId>null</sessionId>或结果字符串为<sessionId>""</sessionId>，则返回
+     *         <sessionId>null</sessionId>
      */
     public static String trimStart(String str) {
         return trim(str, null, -1);
     }
 
     /**
-     * 除去字符串头部的指定字符，如果字符串是<code>null</code>，依然返回<code>null</code>。
+     * 除去字符串头部的指定字符，如果字符串是<sessionId>null</sessionId>，依然返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.trimStart(null, *)          = null
@@ -303,17 +303,17 @@ public class StringUtil {
      * </pre>
      *
      * @param str        要处理的字符串
-     * @param stripChars 要除去的字符，如果为<code>null</code>表示除去空白字符
-     * @return 除去指定字符后的的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
+     * @param stripChars 要除去的字符，如果为<sessionId>null</sessionId>表示除去空白字符
+     * @return 除去指定字符后的的字符串，如果原字串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String trimStart(String str, String stripChars) {
         return trim(str, stripChars, -1);
     }
 
     /**
-     * 除去字符串尾部的空白，如果字符串是<code>null</code>，则返回<code>null</code>。
+     * 除去字符串尾部的空白，如果字符串是<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>。
      * <p>
-     * 注意，和<code>String.trim</code>不同，此方法使用<code>Character.isWhitespace</code>
+     * 注意，和<sessionId>String.trim</sessionId>不同，此方法使用<sessionId>Character.isWhitespace</sessionId>
      * 来判定空白， 因而可以除去英文字符集之外的其它空白，如中文空格。
      * <p/>
      * <pre>
@@ -328,15 +328,15 @@ public class StringUtil {
      * </p>
      *
      * @param str 要处理的字符串
-     * @return 除去空白的字符串，如果原字串为<code>null</code>或结果字符串为<code>""</code>，则返回
-     *         <code>null</code>
+     * @return 除去空白的字符串，如果原字串为<sessionId>null</sessionId>或结果字符串为<sessionId>""</sessionId>，则返回
+     *         <sessionId>null</sessionId>
      */
     public static String trimEnd(String str) {
         return trim(str, null, 1);
     }
 
     /**
-     * 除去字符串尾部的指定字符，如果字符串是<code>null</code>，依然返回<code>null</code>。
+     * 除去字符串尾部的指定字符，如果字符串是<sessionId>null</sessionId>，依然返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.trimEnd(null, *)          = null
@@ -350,17 +350,17 @@ public class StringUtil {
      * </pre>
      *
      * @param str        要处理的字符串
-     * @param stripChars 要除去的字符，如果为<code>null</code>表示除去空白字符
-     * @return 除去指定字符后的的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
+     * @param stripChars 要除去的字符，如果为<sessionId>null</sessionId>表示除去空白字符
+     * @return 除去指定字符后的的字符串，如果原字串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String trimEnd(String str, String stripChars) {
         return trim(str, stripChars, 1);
     }
 
     /**
-     * 除去字符串头尾部的空白，如果结果字符串是空字符串<code>""</code>，则返回<code>null</code>。
+     * 除去字符串头尾部的空白，如果结果字符串是空字符串<sessionId>""</sessionId>，则返回<sessionId>null</sessionId>。
      * <p>
-     * 注意，和<code>String.trim</code>不同，此方法使用<code>Character.isWhitespace</code>
+     * 注意，和<sessionId>String.trim</sessionId>不同，此方法使用<sessionId>Character.isWhitespace</sessionId>
      * 来判定空白， 因而可以除去英文字符集之外的其它空白，如中文空格。
      * <p/>
      * <pre>
@@ -376,9 +376,9 @@ public class StringUtil {
      * </p>
      *
      * @param str        要处理的字符串
-     * @param stripChars 要除去的字符，如果为<code>null</code>表示除去空白字符
-     * @return 除去空白的字符串，如果原字串为<code>null</code>或结果字符串为<code>""</code>，则返回
-     *         <code>null</code>
+     * @param stripChars 要除去的字符，如果为<sessionId>null</sessionId>表示除去空白字符
+     * @return 除去空白的字符串，如果原字串为<sessionId>null</sessionId>或结果字符串为<sessionId>""</sessionId>，则返回
+     *         <sessionId>null</sessionId>
      */
     public static String trimToNull(String str, String stripChars) {
         String result = trim(str, stripChars);
@@ -391,9 +391,9 @@ public class StringUtil {
     }
 
     /**
-     * 除去字符串头尾部的空白，如果字符串是<code>null</code>，则返回空字符串<code>""</code>。
+     * 除去字符串头尾部的空白，如果字符串是<sessionId>null</sessionId>，则返回空字符串<sessionId>""</sessionId>。
      * <p>
-     * 注意，和<code>String.trim</code>不同，此方法使用<code>Character.isWhitespace</code>
+     * 注意，和<sessionId>String.trim</sessionId>不同，此方法使用<sessionId>Character.isWhitespace</sessionId>
      * 来判定空白， 因而可以除去英文字符集之外的其它空白，如中文空格。
      * <p/>
      * <pre>
@@ -409,8 +409,8 @@ public class StringUtil {
      * </p>
      *
      * @param str 要处理的字符串
-     * @return 除去空白的字符串，如果原字串为<code>null</code>或结果字符串为<code>""</code>，则返回
-     *         <code>null</code>
+     * @return 除去空白的字符串，如果原字串为<sessionId>null</sessionId>或结果字符串为<sessionId>""</sessionId>，则返回
+     *         <sessionId>null</sessionId>
      */
     public static String trimToEmpty(String str, String stripChars) {
         String result = trim(str, stripChars);
@@ -423,7 +423,7 @@ public class StringUtil {
     }
 
     /**
-     * 除去字符串头尾部的指定字符，如果字符串是<code>null</code>，依然返回<code>null</code>。
+     * 除去字符串头尾部的指定字符，如果字符串是<sessionId>null</sessionId>，依然返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.trim(null, *)          = null
@@ -436,10 +436,10 @@ public class StringUtil {
      * </pre>
      *
      * @param str        要处理的字符串
-     * @param stripChars 要除去的字符，如果为<code>null</code>表示除去空白字符
-     * @param mode       <code>-1</code>表示trimStart，<code>0</code>表示trim全部，
-     *                   <code>1</code>表示trimEnd
-     * @return 除去指定字符后的的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
+     * @param stripChars 要除去的字符，如果为<sessionId>null</sessionId>表示除去空白字符
+     * @param mode       <sessionId>-1</sessionId>表示trimStart，<sessionId>0</sessionId>表示trim全部，
+     *                   <sessionId>1</sessionId>表示trimEnd
+     * @return 除去指定字符后的的字符串，如果原字串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     private static String trim(String str, String stripChars, int mode) {
         if (str == null) {
@@ -492,9 +492,9 @@ public class StringUtil {
     // ==========================================================================
 
     /**
-     * 将字符串的首字符转成大写（<code>Character.toTitleCase</code>），其它字符不变。
+     * 将字符串的首字符转成大写（<sessionId>Character.toTitleCase</sessionId>），其它字符不变。
      * <p>
-     * 如果字符串是<code>null</code>则返回<code>null</code>。
+     * 如果字符串是<sessionId>null</sessionId>则返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.capitalize(null)  = null
@@ -506,7 +506,7 @@ public class StringUtil {
      * </p>
      *
      * @param str 要转换的字符串
-     * @return 首字符为大写的字符串，如果原字符串为<code>null</code>，则返回<code>null</code>
+     * @return 首字符为大写的字符串，如果原字符串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String capitalize(String str) {
         int strLen;
@@ -522,7 +522,7 @@ public class StringUtil {
     /**
      * 将字符串的首字符转成小写，其它字符不变。
      * <p>
-     * 如果字符串是<code>null</code>则返回<code>null</code>。
+     * 如果字符串是<sessionId>null</sessionId>则返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.uncapitalize(null)  = null
@@ -534,7 +534,7 @@ public class StringUtil {
      * </p>
      *
      * @param str 要转换的字符串
-     * @return 首字符为小写的字符串，如果原字符串为<code>null</code>，则返回<code>null</code>
+     * @return 首字符为小写的字符串，如果原字符串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String uncapitalize(String str) {
         int strLen;
@@ -554,7 +554,7 @@ public class StringUtil {
     /**
      * 反转字符串的大小写。
      * <p>
-     * 如果字符串是<code>null</code>则返回<code>null</code>。
+     * 如果字符串是<sessionId>null</sessionId>则返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.swapCase(null)                 = null
@@ -565,7 +565,7 @@ public class StringUtil {
      * </p>
      *
      * @param str 要转换的字符串
-     * @return 大小写被反转的字符串，如果原字符串为<code>null</code>，则返回<code>null</code>
+     * @return 大小写被反转的字符串，如果原字符串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String swapCase(String str) {
         int strLen;
@@ -598,7 +598,7 @@ public class StringUtil {
     /**
      * 将字符串转换成大写。
      * <p>
-     * 如果字符串是<code>null</code>则返回<code>null</code>。
+     * 如果字符串是<sessionId>null</sessionId>则返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.toUpperCase(null)  = null
@@ -609,7 +609,7 @@ public class StringUtil {
      * </p>
      *
      * @param str 要转换的字符串
-     * @return 大写字符串，如果原字符串为<code>null</code>，则返回<code>null</code>
+     * @return 大写字符串，如果原字符串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String toUpperCase(String str) {
         if (str == null) {
@@ -622,7 +622,7 @@ public class StringUtil {
     /**
      * 将字符串转换成小写。
      * <p>
-     * 如果字符串是<code>null</code>则返回<code>null</code>。
+     * 如果字符串是<sessionId>null</sessionId>则返回<sessionId>null</sessionId>。
      * <p/>
      * <pre>
      * StringUtil.toLowerCase(null)  = null
@@ -633,7 +633,7 @@ public class StringUtil {
      * </p>
      *
      * @param str 要转换的字符串
-     * @return 大写字符串，如果原字符串为<code>null</code>，则返回<code>null</code>
+     * @return 大写字符串，如果原字符串为<sessionId>null</sessionId>，则返回<sessionId>null</sessionId>
      */
     public static String toLowerCase(String str) {
         if (str == null) {

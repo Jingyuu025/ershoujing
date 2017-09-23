@@ -22,8 +22,8 @@ public class BaseResp<T> {
     /**
      * ok
      *
-     * @param data
-     * @param <T>
+     * @param data 响应内容
+     * @param <T>  响应内容类型
      * @return
      */
     public static <T> BaseResp<T> ok(T data) {
@@ -31,7 +31,7 @@ public class BaseResp<T> {
                 .data(data)
                 .retCode(0)
                 .retMsg("操作成功")
-                .<T>build();
+                .build();
     }
 
     /**
@@ -53,6 +53,28 @@ public class BaseResp<T> {
         return BaseResp.builder()
                 .retCode(failCode)
                 .retMsg(failMsg)
+                .build();
+    }
+
+
+    /**
+     * fail
+     */
+    public static BaseResp fail() {
+        return fail(null);
+    }
+
+    /**
+     * fail
+     *
+     * @param data 响应内容
+     * @param <T>  响应内容类型
+     */
+    public static <T> BaseResp<T> fail(T data) {
+        return BaseResp.<T>builder()
+                .retCode(9)
+                .retMsg("操作失败")
+                .data(data)
                 .build();
     }
 

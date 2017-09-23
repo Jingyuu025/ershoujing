@@ -9,7 +9,7 @@
     <parent>
         <groupId>com.jingyuu</groupId>
         <artifactId>jingyuu-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.2-beta</version>
     </parent>
 
     <modules>
@@ -53,7 +53,7 @@
             </dependency>
             <dependency>
                 <groupId>com.jingyuu</groupId>
-                <artifactId>ershoujing-web</artifactId>
+                <artifactId>ershoujing-server</artifactId>
                 <version>${ershoujing.version}</version>
             </dependency>
 
@@ -61,16 +61,16 @@
             <dependency>
                 <groupId>io.tbud</groupId>
                 <artifactId>spring-boot-starter-dubbo</artifactId>
-                <version>1.1.6-RELEASE</version>
             </dependency>
 
             <!-- Test -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
-                <version>1.4.3.RELEASE</version>
+                <version>1.5.6.RELEASE</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
@@ -125,6 +125,13 @@
                 <version>1.5.6.RELEASE</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>1.5.6.RELEASE</version>
+            </dependency>
+
+
             <!-- DBCP -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -149,6 +156,12 @@
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>1.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.0</version>
             </dependency>
 
             <!-- Servlet -->

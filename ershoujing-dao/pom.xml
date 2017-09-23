@@ -12,6 +12,11 @@
     <artifactId>ershoujing-dao</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.jingyuu</groupId>
+            <artifactId>ershoujing-common</artifactId>
+        </dependency>
+
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -50,9 +55,14 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.jingyuu</groupId>
-            <artifactId>ershoujing-common</artifactId>
-        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>io.swagger</groupId>-->
+            <!--<artifactId>swagger-annotations</artifactId>-->
+        <!--</dependency>-->
+
+
+
     </dependencies>
 </project>

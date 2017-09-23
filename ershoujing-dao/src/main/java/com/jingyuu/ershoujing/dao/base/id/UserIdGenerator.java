@@ -6,7 +6,6 @@ package com.jingyuu.ershoujing.dao.base.id;
  * @date 2017-09-11
  */
 public class UserIdGenerator extends IdGenerator {
-
     @Override
     protected String segmentValue() {
         return "PK_USER_ID";
@@ -15,5 +14,10 @@ public class UserIdGenerator extends IdGenerator {
     @Override
     protected String prefix() {
         return "U";
+    }
+
+    @Override
+    protected String dateStr() {
+        return "";
     }
 }

@@ -13,8 +13,8 @@ import java.util.Date;
  * @author owen
  * @date 2017-08-10
  */
-@MappedSuperclass
 @Data
+@MappedSuperclass
 public class BaseIdentityEntity extends BaseBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
