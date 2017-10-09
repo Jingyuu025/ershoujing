@@ -1,10 +1,10 @@
 package com.jingyuu.ershoujing.web.controller;
 
 import com.jingyuu.ershoujing.common.exception.JyuException;
-import com.jingyuu.ershoujing.dao.jpa.entity.UserEntity;
-import com.jingyuu.ershoujing.dao.jpa.entity.UserSessionEntity;
-import com.jingyuu.ershoujing.service.system.UserService;
-import com.jingyuu.ershoujing.service.system.UserSessionService;
+import com.jingyuu.ershoujing.dao.jpa.entity.user.UserEntity;
+import com.jingyuu.ershoujing.dao.jpa.entity.user.UserSessionEntity;
+import com.jingyuu.ershoujing.service.user.UserService;
+import com.jingyuu.ershoujing.service.user.UserSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

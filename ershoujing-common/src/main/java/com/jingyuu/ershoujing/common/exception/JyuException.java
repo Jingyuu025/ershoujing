@@ -35,7 +35,8 @@ public class JyuException extends Exception {
      * @param description 错误详细内容
      */
     public JyuException(ErrorEnum errorEnum, String description) {
-        super(errorEnum.getErrMessage().concat(":").concat(description));
+//        super(errorEnum.getErrMessage().concat(":").concat(description));
+        super(description);
         this.errCode = errorEnum.getErrCode();
         this.errMessage = errorEnum.getErrMessage();
     }

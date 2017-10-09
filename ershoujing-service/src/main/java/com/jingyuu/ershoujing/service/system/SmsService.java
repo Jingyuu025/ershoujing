@@ -1,7 +1,7 @@
 package com.jingyuu.ershoujing.service.system;
 
 import com.jingyuu.ershoujing.common.exception.JyuException;
-import com.jingyuu.ershoujing.dao.jpa.entity.SmsEntity;
+import com.jingyuu.ershoujing.dao.jpa.entity.sytem.SmsEntity;
 import com.jingyuu.ershoujing.dao.mybatis.bo.SmsCodeBo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.SmsCodeVo;
 
@@ -34,7 +34,7 @@ public interface SmsService {
      * @param smsCodeBo
      * @return
      */
-    SmsCodeVo createSmsCode(SmsCodeBo smsCodeBo);
+    SmsCodeVo createSmsCode(SmsCodeBo smsCodeBo) throws JyuException;
 
     /**
      * 验证短信验证码

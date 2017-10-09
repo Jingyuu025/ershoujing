@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -27,7 +28,8 @@ import static org.springframework.http.HttpStatus.OK;
 public class ExceptionHandlerConfig extends ResponseEntityExceptionHandler {
     @ExceptionHandler({
             JyuException.class,
-            MultipartException.class
+            MultipartException.class,
+            MaxUploadSizeExceededException.class
     })
     public final ResponseEntity<Object> handleBizException(Exception ex, WebRequest request) {
         if (ex instanceof JyuException) {
@@ -38,10 +40,10 @@ public class ExceptionHandlerConfig extends ResponseEntityExceptionHandler {
                     OK,
                     request
             );
-        } else if (ex instanceof MultipartException) {
+        } else if (ex instanceof MaxUploadSizeExceededException || ex instanceof MultipartException) {
             return handleExceptionInternal(
                     ex,
-                    BaseResp.fail(ErrorEnum.UPLOAD_SIZE_EXCEEDED.getErrCode(), ErrorEnum.UPLOAD_SIZE_EXCEEDED.getErrMessage()),
+                    BaseResp.fail(ErrorEnum.UPLOAD_SIZE_EXCEEDED.getErrMessage()),
                     null,
                     OK,
                     request

@@ -72,7 +72,7 @@ public class BaseResp<T> {
      */
     public static <T> BaseResp<T> fail(T data) {
         return BaseResp.<T>builder()
-                .retCode(9)
+                .retCode(9999)
                 .retMsg("操作失败")
                 .data(data)
                 .build();

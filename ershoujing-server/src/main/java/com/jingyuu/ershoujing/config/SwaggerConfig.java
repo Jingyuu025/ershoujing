@@ -34,6 +34,7 @@ public class SwaggerConfig {
     private Predicate<String> hadesPaths() {
         return or(
                 regex("/system.*"),     // 系统
+                regex("/file.*"),       // 文件
                 regex("/user.*")        // 用户
 
         );
@@ -41,9 +42,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Er shou jing")
+                .title("二手鲸 - Er shou jing")
                 .description("二手鲸接口服务")
-                .contact(new Contact("Owen", "http://www.jingyuu.com", "i-owen@live.cn"))
+                .contact(new Contact("Owen（i-owen@live.cn）", "http://www.jingyuu.com", "i-owen@live.cn"))
                 .version("1.0.0")
                 .build();
     }

@@ -1,26 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
-    <property scope="context" name="APP_PATTERN"
-              value='%d{yyyy-MM-dd HH:mm:ss.SSS}|%level|%M|%C\:%L|%thread|%replace(%.-100000msg){"(\r|\n)","\t"}|"%.-100000ex{full}"%n'/>
+    <property name="app_name" value="ershoujing"/>
+    <property name="charset" value="UTF-8"/>
+    <property name="app_pattern"
+              value='%d{yyyy-MM-dd HH:mm:ss.SSS}|%level|%M|%C\:%L|%thread|%replace(%.-100000msg){"(\r|\n)","\t"}|"%.-100000ex{full}"%n'
+              scope="context"/>
+    <property name="app_path"
+              value="/Users/owen/Downloads/jingyuu/logs"/>
 
-    <!-- 控制台输出 -->
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder" charset="${CHARSET}">
-            <pattern>${APP_PATTERN}</pattern>
+    <contextName>${app_name}</contextName>
+
+    <!-- 控制台 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder" charset="${charset}">
+            <pattern>${app_pattern}</pattern>
         </encoder>
     </appender>
 
-    <!--mybatis log configure -->
-    <logger name="org.mybatis"/>
-    <logger name="org.apache.ibatis" level="debug"/>
-    <logger name="java.sql.Connection" level="debug"/>
-    <logger name="java.sql.Statement" level="debug"/>
-    <logger name="java.sql.PreparedStatement" level="debug"/>
-    <logger name="java.sql.ResultSet" level="debug"/>
+    <!-- 文件-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${app_path}/jingyuu/ershoujing.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${app_path}/jingyuu/ershoujing.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${app_pattern}</pattern>
+        </encoder>
+    </appender>
 
-    <logger name="com.jingyuu.ershoujing.dao.mybatis.mapper" level="DEBUG"/>
+    <!-- mybatis debug-->
+    <logger name="com.jingyuu.ershoujing.dao.mybatis.mapper" level="DEBUG" >
+        <appender-ref ref="CONSOLE"/>
+    </logger>
 
     <root level="INFO">
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
     </root>
 </configuration>

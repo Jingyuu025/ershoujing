@@ -14,7 +14,6 @@ spring:
   profiles:
     include:
       - business
-
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/jingyuu?useUnicode=true&characterEncoding=utf-8
     username: root
@@ -29,29 +28,23 @@ spring:
       min-idle: 5
       max-wait-millis: 30000
       test-while-idle: true
-
   http:
     encoding:
       charset: UTF-8
       enabled: true
       force: true
-
-  multipart:
-    encoding: UTF-8
-    memorySize: 4096
-
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss
-
   jackson:
     time-zone: GMT+8
     date-format: ${spring.mvc.date-format}
-
   messages:
     basename: config/message
     cache-seconds: -1
     encoding: UTF-8
-
   redis:
     host: 127.0.0.1
     port: 6379
@@ -61,25 +54,45 @@ spring:
       min-idle: 1
       max-active: 1000
       max-wait: -1
-
   jpa:
     database: MYSQL
     show-sql: true
     hibernate:
       ddl-auto: update
       naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
-
-
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
 
-
-
 #业务相关
-## 指定短信验证码多长时间后失效，单位为秒
+## 验证码
 sms:
   code:
+    # 指定短信验证码多长时间后失效，单位为秒
     expire-in: 600
+
+## 文件服务
+file:
+  # 单个文件大小限制 10MB
+  max_file_size: 10485760
+  # 存储
+  storage:
+    local: /Users/owen/Downloads/jingyuu/data/local
+    remote: /Users/owen/Downloads/jingyuu/data/remote
+  cron:
+    # 上传到远程
+    upload_to_remote:
+    # 清除本地存储
+    clear_local_storage:
+  oss:
+    endpoint: http://oss-cn-hangzhou.aliyuncs.com
+    access_key_id:
+    access_key_secret:
+    bucket:
+      default_bucket: jyu-customer-bucket
+      jyu_bucket: jyu-bucket
+
+
+
 
 
 

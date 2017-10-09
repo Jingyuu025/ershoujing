@@ -1,23 +1,23 @@
 package com.jingyuu.ershoujing.service.system.impl;
 
 import com.jingyuu.ershoujing.common.exception.JyuException;
-import com.jingyuu.ershoujing.common.statics.enums.ErrorEnum;
-import com.jingyuu.ershoujing.common.statics.enums.SmsCodeBusinessEnum;
-import com.jingyuu.ershoujing.common.statics.enums.SmsCodeStateEnum;
-import com.jingyuu.ershoujing.common.statics.enums.SmsStateEnum;
+import com.jingyuu.ershoujing.common.statics.enums.*;
 import com.jingyuu.ershoujing.common.utils.CommonUtil;
 import com.jingyuu.ershoujing.common.utils.DateUtil;
 import com.jingyuu.ershoujing.common.utils.RandomUtil;
-import com.jingyuu.ershoujing.dao.jpa.entity.SmsCodeEntity;
-import com.jingyuu.ershoujing.dao.jpa.entity.SmsEntity;
-import com.jingyuu.ershoujing.dao.jpa.repository.SmsCodeRepository;
-import com.jingyuu.ershoujing.dao.jpa.repository.SmsRepository;
+import com.jingyuu.ershoujing.dao.jpa.entity.sytem.SmsCodeEntity;
+import com.jingyuu.ershoujing.dao.jpa.entity.sytem.SmsEntity;
+import com.jingyuu.ershoujing.dao.jpa.entity.user.UserEntity;
+import com.jingyuu.ershoujing.dao.jpa.repository.system.SmsCodeRepository;
+import com.jingyuu.ershoujing.dao.jpa.repository.system.SmsRepository;
 import com.jingyuu.ershoujing.dao.mybatis.bo.SmsCodeBo;
 import com.jingyuu.ershoujing.dao.mybatis.mapper.SmsCodeMapper;
 import com.jingyuu.ershoujing.dao.mybatis.vo.SmsCodeVo;
 import com.jingyuu.ershoujing.service.support.MessageSourceSupport;
 import com.jingyuu.ershoujing.service.system.SmsService;
+import com.jingyuu.ershoujing.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +28,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.jingyuu.ershoujing.common.statics.enums.SmsCodeBizEnum.REGISTER;
+
 /**
  * @author owen
  * @date 2017-09-15
@@ -37,10 +39,16 @@ import java.util.List;
 public class SmsServiceImpl implements SmsService {
     // 短信验证码前缀
     public static final String SMS_CODE_PREFIX = "sms.code.";
+    // 获取短信验证码不需要校验用户（状态）的业务
+    private static final SmsCodeBizEnum[] VALIDATE_USER_EXCLUDES_BIZ = {
+            REGISTER                              // 注册
+    };
     // 短信验证码失效时长（单位：秒）
     @Value("${sms.code.expire-in}")
     private String smsCodeExpireIn;
 
+    @Autowired
+    private UserService userService;
     @Autowired
     private MessageSourceSupport messageSupport;
     @Autowired
@@ -85,10 +93,20 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
-    public SmsCodeVo createSmsCode(SmsCodeBo smsCodeBo) {
+    public SmsCodeVo createSmsCode(SmsCodeBo smsCodeBo) throws JyuException {
         String telephone = smsCodeBo.getTelephone(); // 手机号
         Integer businessType = smsCodeBo.getBusinessType(); // 业务类型
-        SmsCodeBusinessEnum smsCodeBusinessEnum = SmsCodeBusinessEnum.fromValue(businessType);
+        SmsCodeBizEnum smsCodeBizEnum = SmsCodeBizEnum.fromValue(businessType);
+
+        // 非排除之外的业务获取短信验证码时需要校验用户信息
+        if (!ArrayUtils.contains(VALIDATE_USER_EXCLUDES_BIZ, smsCodeBizEnum)) {
+            // 查询用户信息
+            UserEntity userEntity = userService.loadByTelephone(telephone);
+            int state = userEntity.getState();
+            if (!UserStateEnum.OK.equals(UserStateEnum.fromValue(state))) {
+                throw new JyuException(ErrorEnum.DATA_IS_ERROR, "用户状态异常,手机号:" + telephone);
+            }
+        }
 
         SmsCodeVo smsCodeVo = this.getSmsCode(smsCodeBo);
         if (CommonUtil.isEmpty(smsCodeVo)) {
@@ -110,7 +128,7 @@ public class SmsServiceImpl implements SmsService {
             smsCodeRepository.save(smsCodeEntity);
 
             // 发送短信
-            String content = messageSupport.getMessage(SMS_CODE_PREFIX + smsCodeBusinessEnum.getAlias(),
+            String content = messageSupport.getMessage(SMS_CODE_PREFIX + smsCodeBizEnum.getAlias(),
                     code,
                     String.valueOf(expireInMinutes));
             SmsEntity smsEntity = SmsEntity.builder()

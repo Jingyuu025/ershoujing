@@ -5,7 +5,7 @@
 
     <select id="listValidSmsCode"
             parameterType="com.jingyuu.ershoujing.dao.mybatis.bo.SmsCodeBo"
-            resultType="com.jingyuu.ershoujing.dao.jpa.entity.SmsCodeEntity">
+            resultType="com.jingyuu.ershoujing.dao.jpa.entity.sytem.SmsCodeEntity">
         SELECT
         t.id,
         t.telephone,

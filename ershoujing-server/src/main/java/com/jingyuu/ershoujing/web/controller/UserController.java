@@ -9,7 +9,7 @@ import com.jingyuu.ershoujing.dao.mybatis.bo.ModifyPasswordBo;
 import com.jingyuu.ershoujing.dao.mybatis.bo.RegisterBo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.LoginVo;
 import com.jingyuu.ershoujing.service.support.annotation.Log;
-import com.jingyuu.ershoujing.service.system.UserService;
+import com.jingyuu.ershoujing.service.user.UserService;
 import com.jingyuu.ershoujing.web.domain.User;
 import com.jingyuu.ershoujing.web.request.LoginRequest;
 import com.jingyuu.ershoujing.web.request.ModifyPasswordRequest;

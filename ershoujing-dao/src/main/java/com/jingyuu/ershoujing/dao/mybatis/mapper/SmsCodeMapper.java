@@ -1,6 +1,6 @@
 package com.jingyuu.ershoujing.dao.mybatis.mapper;
 
-import com.jingyuu.ershoujing.dao.jpa.entity.SmsCodeEntity;
+import com.jingyuu.ershoujing.dao.jpa.entity.sytem.SmsCodeEntity;
 import com.jingyuu.ershoujing.dao.mybatis.bo.SmsCodeBo;
 import org.springframework.stereotype.Repository;
 

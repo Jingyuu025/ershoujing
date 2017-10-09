@@ -1,11 +1,11 @@
 package com.jingyuu.ershoujing.service.system.impl;
 
-import com.jingyuu.ershoujing.dao.jpa.entity.LogEntity;
-import com.jingyuu.ershoujing.dao.jpa.entity.UserEntity;
-import com.jingyuu.ershoujing.dao.jpa.repository.LogRepository;
+import com.jingyuu.ershoujing.dao.jpa.entity.sytem.LogEntity;
+import com.jingyuu.ershoujing.dao.jpa.entity.user.UserEntity;
+import com.jingyuu.ershoujing.dao.jpa.repository.system.LogRepository;
 import com.jingyuu.ershoujing.service.support.event.ActionEvent;
 import com.jingyuu.ershoujing.service.system.LogService;
-import com.jingyuu.ershoujing.service.system.UserService;
+import com.jingyuu.ershoujing.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
