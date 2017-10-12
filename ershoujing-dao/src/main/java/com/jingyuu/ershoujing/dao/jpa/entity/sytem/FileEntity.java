@@ -40,6 +40,9 @@ public class FileEntity extends BaseCustomIdEntity {
     @Column(name = "local_path", columnDefinition = "VARCHAR(256) COMMENT '图片本地存储'")
     private String localPath;
 
+    @Column(name = "bucket_name", columnDefinition = "VARCHAR(128) COMMENT 'bucket'")
+    private String bucketName;
+
     @Column(name = "remote_path", columnDefinition = "VARCHAR(256) COMMENT '图片远程存储'")
     private String remotePath;
 

@@ -1,6 +1,7 @@
 package com.jingyuu.ershoujing.dao.jpa.repository.system;
 
 import com.jingyuu.ershoujing.dao.jpa.entity.sytem.FileGroupMappingEntity;
+import com.jingyuu.ershoujing.dao.jpa.repository.BaseRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @date 2017-09-07
  */
 @Repository
-public interface FileGroupMappingRepository extends CrudRepository<FileGroupMappingEntity, Long> {
+public interface FileGroupMappingRepository extends BaseRepository<FileGroupMappingEntity, Long> {
     /**
      * 查询文件组列表
      *

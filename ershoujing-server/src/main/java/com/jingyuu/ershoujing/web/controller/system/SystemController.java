@@ -1,9 +1,10 @@
-package com.jingyuu.ershoujing.web.controller;
+package com.jingyuu.ershoujing.web.controller.system;
 
 import com.jingyuu.ershoujing.common.exception.JyuException;
 import com.jingyuu.ershoujing.dao.mybatis.bo.SmsCodeBo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.SmsCodeVo;
 import com.jingyuu.ershoujing.service.system.SmsService;
+import com.jingyuu.ershoujing.web.controller.BaseController;
 import com.jingyuu.ershoujing.web.request.SmsCodeRequest;
 import com.jingyuu.ershoujing.web.response.BaseResp;
 import com.jingyuu.ershoujing.web.response.SmsCodeResult;
@@ -22,7 +23,7 @@ import javax.validation.Valid;
  * @author owen
  * @date 2017-09-07
  */
-@Api(tags = "系统")
+@Api(tags = "短信服务")
 @RequestMapping(value = "/system")
 @RestController
 public class SystemController extends BaseController {

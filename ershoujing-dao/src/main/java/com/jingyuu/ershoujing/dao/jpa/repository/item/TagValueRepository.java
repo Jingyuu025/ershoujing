@@ -1,6 +1,6 @@
 package com.jingyuu.ershoujing.dao.jpa.repository.item;
 
-import com.jingyuu.ershoujing.dao.jpa.entity.item.BrandEntity;
+import com.jingyuu.ershoujing.dao.jpa.entity.item.TagValueEntity;
 import com.jingyuu.ershoujing.dao.jpa.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,12 +11,12 @@ import java.util.List;
  * @date 2017-10-09
  */
 @Repository
-public interface TagKeyRepository extends BaseRepository<BrandEntity, Long> {
+public interface TagValueRepository extends BaseRepository<TagValueEntity, Long> {
     /**
-     * 查询品牌列表
+     * 查询标签值列表
      *
-     * @param bName 品牌名称
+     * @param keyId
      * @return
      */
-    List<BrandEntity> findByBNameLike(String bName);
+    List<TagValueEntity> findByKeyId(Long keyId);
 }

@@ -1,13 +1,22 @@
 package com.jingyuu.ershoujing.dao.jpa.repository.item;
 
-import com.jingyuu.ershoujing.dao.jpa.entity.item.CategoryEntity;
-import org.springframework.data.repository.CrudRepository;
+import com.jingyuu.ershoujing.dao.jpa.entity.item.BrandEntity;
+import com.jingyuu.ershoujing.dao.jpa.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author owen
  * @date 2017-10-09
  */
 @Repository
-public interface CategoryRepository extends CrudRepository<CategoryEntity, Long> {
+public interface BrandRepository extends BaseRepository<BrandEntity, Long> {
+    /**
+     * 查询品牌列表
+     *
+     * @param bName 品牌名称
+     * @return
+     */
+    List<BrandEntity> findByBNameLike(String bName);
 }

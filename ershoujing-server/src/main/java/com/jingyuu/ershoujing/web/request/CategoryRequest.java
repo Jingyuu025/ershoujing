@@ -7,8 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,20 +17,9 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel("登陆请求")
-public class LoginRequest {
-    @ApiModelProperty(value = "终端 1:PC 2:Mobile", required = true, allowableValues = "1:PC,2:Mobile", example = "1")
-    @Min(value = 1, message = "终端类型错误")
-    @Max(value = 2, message = "终端类型错误")
-    private Integer terminal;
-
-    @ApiModelProperty(value = "手机", required = true, example = "13913317376")
-    @NotNull(message = "手机缺失")
-    private String telephone;
-
-    @ApiModelProperty(value = "密码", example = "123456")
-    private String password;
-
-    @ApiModelProperty(value = "短信验证码", example = "1024")
-    private String code;
+@ApiModel("类目请求")
+public class CategoryRequest {
+    @ApiModelProperty(value = "类目名称", required = true, example = "手机")
+    @NotNull(message = "类目名称缺失")
+    private String categoryName;
 }

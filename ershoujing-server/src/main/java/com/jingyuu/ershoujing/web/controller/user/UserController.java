@@ -1,4 +1,4 @@
-package com.jingyuu.ershoujing.web.controller;
+package com.jingyuu.ershoujing.web.controller.user;
 
 import com.jingyuu.ershoujing.common.exception.JyuException;
 import com.jingyuu.ershoujing.common.statics.constants.JyuConstant;
@@ -10,6 +10,7 @@ import com.jingyuu.ershoujing.dao.mybatis.bo.RegisterBo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.LoginVo;
 import com.jingyuu.ershoujing.service.support.annotation.Log;
 import com.jingyuu.ershoujing.service.user.UserService;
+import com.jingyuu.ershoujing.web.controller.BaseController;
 import com.jingyuu.ershoujing.web.domain.User;
 import com.jingyuu.ershoujing.web.request.LoginRequest;
 import com.jingyuu.ershoujing.web.request.ModifyPasswordRequest;

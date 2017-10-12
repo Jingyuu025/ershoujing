@@ -1,4 +1,4 @@
-package com.jingyuu.ershoujing.web.controller;
+package com.jingyuu.ershoujing.web.controller.system;
 
 import com.jingyuu.ershoujing.common.exception.JyuException;
 import com.jingyuu.ershoujing.common.statics.constants.JyuConstant;
@@ -10,6 +10,7 @@ import com.jingyuu.ershoujing.dao.mybatis.bo.FileBo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.FileVo;
 import com.jingyuu.ershoujing.service.support.annotation.Log;
 import com.jingyuu.ershoujing.service.system.FileService;
+import com.jingyuu.ershoujing.web.controller.BaseController;
 import com.jingyuu.ershoujing.web.domain.File;
 import com.jingyuu.ershoujing.web.domain.FileGroup;
 import com.jingyuu.ershoujing.web.domain.FileGroupMapping;
@@ -37,7 +38,7 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
  * @author owen
  * @date 2017-09-29
  */
-@Api(tags = "文件")
+@Api(tags = "文件服务")
 @RequestMapping(value = "/file")
 @RestController
 public class FileController extends BaseController {

@@ -33,9 +33,11 @@ public class SwaggerConfig {
 
     private Predicate<String> hadesPaths() {
         return or(
-                regex("/system.*"),     // 系统
-                regex("/file.*"),       // 文件
-                regex("/user.*")        // 用户
+                regex("/system.*"),      // 系统
+                regex("/file.*"),        // 文件
+                regex("/user.*"),        // 用户
+                regex("/category.*"),    // 类目
+                regex("/brand.*")        // 品牌
 
         );
     }

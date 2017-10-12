@@ -15,9 +15,11 @@ spring:
     include:
       - business
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/jingyuu?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: sa
+    # 127.0.0.1:3306 / root / sa
+    # 47.95.245.38   / jingyuu / Jingyuu123!@#
+    url: jdbc:mysql://47.95.245.38:33306/jingyuu?useUnicode=true&characterEncoding=utf-8
+    username: jingyuu
+    password: Jingyuu123!@#
     driver-class-name: com.mysql.jdbc.Driver
     dbcp2:
       validation-query: select 1
@@ -28,6 +30,8 @@ spring:
       min-idle: 5
       max-wait-millis: 30000
       test-while-idle: true
+    hikari:
+      allow-pool-suspension:
   http:
     encoding:
       charset: UTF-8
@@ -85,8 +89,8 @@ file:
     clear_local_storage:
   oss:
     endpoint: http://oss-cn-hangzhou.aliyuncs.com
-    access_key_id:
-    access_key_secret:
+    access_key_id: LTAIiYeQHFdB7DRa
+    access_key_secret: RMiDbGEXgnuZrmQoN9YayxqIvUsMpV
     bucket:
       default_bucket: jyu-customer-bucket
       jyu_bucket: jyu-bucket

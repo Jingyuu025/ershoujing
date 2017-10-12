@@ -1,6 +1,7 @@
 package com.jingyuu.ershoujing.dao.jpa.repository.system;
 
 import com.jingyuu.ershoujing.dao.jpa.entity.sytem.FileGroupEntity;
+import com.jingyuu.ershoujing.dao.jpa.repository.BaseRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * @date 2017-09-07
  */
 @Repository
-public interface FileGroupRepository extends CrudRepository<FileGroupEntity, String> {
+public interface FileGroupRepository extends BaseRepository<FileGroupEntity, String> {
 }

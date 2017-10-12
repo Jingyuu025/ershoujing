@@ -7,8 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-
 /**
  * @author owen
  * @date 2017-10-09
@@ -17,7 +15,7 @@ import javax.persistence.Column;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TagKeyBo extends BaseBean {
+public class TagValueBo extends BaseBean {
     /**
      * 健类型
      */

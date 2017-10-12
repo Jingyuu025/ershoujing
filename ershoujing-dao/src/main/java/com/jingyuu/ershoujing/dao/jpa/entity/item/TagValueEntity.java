@@ -19,17 +19,20 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "jyu_tag_key")
-public class TagKeyEntity extends BaseIdentityEntity {
-    @Column(name = "type", columnDefinition = "SMALLINT(6) COMMENT '标签键类型 1：基本信息 2：外观成色 3：功能性问题'")
-    private Integer type;
+@Table(name = "jyu_tag_value")
+public class TagValueEntity extends BaseIdentityEntity {
+    @Column(name = "key_id", columnDefinition = "INTEGER COMMENT '键编号'")
+    private Long keyId;
 
-    @Column(name ="key",columnDefinition = "VARCHAR(64) COMMENT '键'")
-    private String key;
+    @Column(name = "key_value", columnDefinition = "VARCHAR(64) COMMENT '键文本'")
+    private String keyText;
 
-    @Column(name ="tip_text",columnDefinition = "VARCHAR(512) COMMENT '键提示文本'")
+    @Column(name = "value_text", columnDefinition = "VARCHAR(64) COMMENT '键值'")
+    private String valueText;
+
+    @Column(name = "tip_text", columnDefinition = "VARCHAR(512) COMMENT '键提示文本'")
     private String tipText;
 
-    @Column(name ="tip_fid",columnDefinition = "VARCHAR(64) COMMENT '键提示图片'")
+    @Column(name = "tip_fid", columnDefinition = "VARCHAR(64) COMMENT '键提示图片'")
     private String tipFid;
 }

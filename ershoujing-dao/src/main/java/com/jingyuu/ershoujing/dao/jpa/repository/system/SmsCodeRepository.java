@@ -1,6 +1,7 @@
 package com.jingyuu.ershoujing.dao.jpa.repository.system;
 
 import com.jingyuu.ershoujing.dao.jpa.entity.sytem.SmsCodeEntity;
+import com.jingyuu.ershoujing.dao.jpa.repository.BaseRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * @date 2017-09-07
  */
 @Repository
-public interface SmsCodeRepository extends CrudRepository<SmsCodeEntity, Long> {
+public interface SmsCodeRepository extends BaseRepository<SmsCodeEntity, Long> {
 
 
 }

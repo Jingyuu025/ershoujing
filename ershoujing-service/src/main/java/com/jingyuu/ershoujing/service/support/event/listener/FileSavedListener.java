@@ -52,6 +52,7 @@ public class FileSavedListener {
             if (CommonUtil.isNotEmpty(remotePaht)) {
                 FileEntity fileEntity = fileService.load(fileId);
                 fileEntity.setRemotePath(remotePaht);
+                fileEntity.setBucketName(bucketName);
                 fileEntity.setState(FileStateEnum.STORAGE_REMOTE.getValue());
 
                 fileRepository.save(fileEntity);

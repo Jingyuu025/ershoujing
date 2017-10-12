@@ -11,26 +11,26 @@ import java.util.stream.Stream;
  * @date 2017-09-07
  */
 @Getter
-public enum SmsStateEnum {
-    DEALING             (1, "发送处理中"),
-    SUCCESS             (2, "发送成功"),
-    FAIL                (3, "发送失败"),
+public enum TagKeyTypeEnum {
+    BASE_INFORMATION                (1, "基本信息"),
+    APPERAANCE                      (2, "外观成色"),
+    FUNCTION_PROBLEM                (3, "功能性问题"),
     ;
 
     private final int value;
     private final String name;
 
-    SmsStateEnum(int value, String name) {
+    TagKeyTypeEnum(int value, String name) {
         this.value = value;
         this.name = name;
     }
 
-    public static SmsStateEnum fromValue(Integer value) {
+    public static TagKeyTypeEnum fromValue(Integer value) {
         if (null == value) {
             return null;
         }
 
-        return Stream.of(SmsStateEnum.values())
+        return Stream.of(TagKeyTypeEnum.values())
                 .filter(val -> value.equals(val.getValue()))
                 .findFirst()
                 .orElse(null);

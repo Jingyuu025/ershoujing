@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -18,10 +19,11 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "jyu_category")
-public class CategoryEntity extends BaseIdentityEntity {
-    /**
-     * 类目名称
-     */
-    private String cName;
+@Table(name = "jyu_brand")
+public class BrandEntity extends BaseIdentityEntity {
+    @Column(name = "b_name", columnDefinition = "VARCHAR(32) COMMENT '品牌名称'")
+    private String bName;
+
+    @Column(name = "logo_fid", columnDefinition = "VARCHAR(64) COMMENT 'logo图片编号'")
+    private String logoFid;
 }

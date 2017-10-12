@@ -4,7 +4,7 @@ import com.jingyuu.ershoujing.common.statics.enums.FileStateEnum;
 import com.jingyuu.ershoujing.common.utils.*;
 import com.jingyuu.ershoujing.dao.jpa.entity.sytem.FileEntity;
 import com.jingyuu.ershoujing.dao.mybatis.bo.FileBo;
-import com.jingyuu.ershoujing.service.system.FileLocalProcessor;
+import com.jingyuu.ershoujing.service.system.FileProcessor;
 import com.jingyuu.ershoujing.service.system.FileReadProcessor;
 import com.jingyuu.ershoujing.service.system.FileService;
 import com.jingyuu.ershoujing.service.system.domain.FileLocalProcessResult;
@@ -26,11 +26,10 @@ import static com.jingyuu.ershoujing.common.utils.DateUtil.DateToString;
  * @date 2017-09-28
  */
 @Slf4j
-@Component
-public class FileLocalProcessorImpl implements FileLocalProcessor, FileReadProcessor {
+@Component(value = "fileLocalReadProcessor")
+public class FileLocalProcessorImpl implements FileProcessor, FileReadProcessor {
     @Autowired
     private FileConfig fileConfig;
-
     @Autowired
     private FileService fileService;
 
@@ -67,12 +66,12 @@ public class FileLocalProcessorImpl implements FileLocalProcessor, FileReadProce
 
             // 识别文件类型
             String fileType = null;
-            FileType fileTypeEnum = FileTypeUtil.getFileTypeByStream(data);
+            FileTypeEnum fileTypeEnum = FileTypeUtil.getFileTypeByStream(data);
             // 目前通过流取文件类型可信任 JPG GIF BMP 三种, 其他的通过扩展名读取
             if (CommonUtil.isNotEmpty(fileTypeEnum) && (
-                    FileType.JPEG.equals(fileTypeEnum) ||
-                            FileType.GIF.equals(fileTypeEnum) ||
-                            FileType.BMP.equals(fileTypeEnum))) {
+                    FileTypeEnum.JPEG.equals(fileTypeEnum) ||
+                            FileTypeEnum.GIF.equals(fileTypeEnum) ||
+                            FileTypeEnum.BMP.equals(fileTypeEnum))) {
                 fileType = fileTypeEnum.getExtension();
             } else {
                 int index = fileBo.getFileName().lastIndexOf('.');
@@ -89,12 +88,8 @@ public class FileLocalProcessorImpl implements FileLocalProcessor, FileReadProce
             // 把文件写入local
             FileUtils.writeByteArrayToFile(file, data);
             return FileLocalProcessResult.builder()
-                    .fileMd5(fileMd5)
-                    .fileName(fileName)
-                    .fileType(fileType)
-                    .fileSize(fileSize)
-                    .localPath(filePath)
-                    .uploadRemote(true)
+                    .fileMd5(fileMd5).fileName(fileName).fileType(fileType).fileSize(fileSize)
+                    .localPath(filePath).uploadRemote(true)
                     .build();
         }
     }
@@ -109,7 +104,6 @@ public class FileLocalProcessorImpl implements FileLocalProcessor, FileReadProce
             log.error("读取本地文件出错, fileEntity:{}", fileEntity);
         }
         return null;
-
     }
 
 

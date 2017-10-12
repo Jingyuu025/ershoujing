@@ -76,15 +76,15 @@ public class AliyunSupport {
     /**
      * 读取文件
      *
-     * @param bucketName
      * @param fileEntity
      * @return
      */
-    public byte[] read(String bucketName, FileEntity fileEntity) {
+    public byte[] read(FileEntity fileEntity) {
         OSSClient ossClient = init();
         byte[] data = null;
 
         String fileId = fileEntity.getId();
+        String bucketName = fileEntity.getBucketName();
         try {
             GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, fileId);
             OSSObject ossObject = ossClient.getObject(getObjectRequest);
@@ -96,10 +96,6 @@ public class AliyunSupport {
         }
 
         return data;
-    }
-
-    public byte[] read(FileEntity fileEntity) {
-        return read(fileConfig.getOss().getBucket().getDefaultBucket(), fileEntity);
     }
 
     /**

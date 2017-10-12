@@ -14,15 +14,20 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category extends BaseBean {
+public class Brand extends BaseBean {
     /**
-     * 类目编号
+     * 品牌编号
      */
-    private Long cId;
+    private Long bId;
 
     /**
-     * 类目名称
+     * 品牌名称
      */
-    private String cName;
+    private String bName;
+
+    /**
+     * 品牌图片文件编号
+     */
+    private String logoFid;
 
 }

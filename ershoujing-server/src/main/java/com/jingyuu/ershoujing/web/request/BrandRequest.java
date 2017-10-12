@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
@@ -17,9 +18,11 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel("类目请求")
-public class CategoryRequest {
-    @ApiModelProperty(value = "类目名称", required = true, example = "手机")
-    @NotNull(message = "类目名称缺失")
-    private String cName;
+@ApiModel("品牌请求")
+public class BrandRequest {
+    @ApiModelProperty(value = "品牌名称", required = true, example = "苹果")
+    @NotNull(message = "品牌名称缺失")
+    private String brandName;
+
+    private MultipartFile file;
 }

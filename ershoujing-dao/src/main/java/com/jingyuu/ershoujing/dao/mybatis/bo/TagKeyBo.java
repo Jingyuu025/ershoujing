@@ -1,10 +1,13 @@
 package com.jingyuu.ershoujing.dao.mybatis.bo;
 
 import com.jingyuu.ershoujing.common.base.BaseBean;
+import com.jingyuu.ershoujing.common.statics.enums.TagKeyTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
 
 /**
  * @author owen
@@ -14,11 +17,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrandBo extends BaseBean {
+public class TagKeyBo extends BaseBean {
     /**
-     * 品牌名称
+     * 健类型
      */
-    private String brandName;
+    private TagKeyTypeEnum keyTypeEnum;
+
+    /**
+     * 健
+     */
+    private String key;
+
+    /**
+     * 键提示文本
+     */
+    private String tipText;
+
 
     /**
      * 品牌图片

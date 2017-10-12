@@ -14,14 +14,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class File extends BaseBean {
+public class Category extends BaseBean {
     /**
-     * 文件编号
+     * 类目编号
      */
-    private String fileId;
+    private Long cId;
 
     /**
-     * 远程地址
+     * 类目名称
      */
-    private String remotePath;
+    private String cName;
+
 }
