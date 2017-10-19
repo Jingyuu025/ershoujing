@@ -5,6 +5,7 @@ import com.jingyuu.ershoujing.dao.jpa.entity.user.UserEntity;
 import com.jingyuu.ershoujing.dao.mybatis.bo.LoginBo;
 import com.jingyuu.ershoujing.dao.mybatis.bo.ModifyPasswordBo;
 import com.jingyuu.ershoujing.dao.mybatis.bo.RegisterBo;
+import com.jingyuu.ershoujing.dao.mybatis.bo.RetrievalPasswordBo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.LoginVo;
 
 /**
@@ -82,4 +83,13 @@ public interface UserService {
      * @throws JyuException
      */
     void modifyPassword(ModifyPasswordBo modifyPasswordBo) throws JyuException;
+
+
+    /**
+     * 找回密码
+     *
+     * @param retrievalPasswordBo 找回密码表单
+     * @throws JyuException
+     */
+    void retrievalPassword(RetrievalPasswordBo retrievalPasswordBo) throws JyuException;
 }

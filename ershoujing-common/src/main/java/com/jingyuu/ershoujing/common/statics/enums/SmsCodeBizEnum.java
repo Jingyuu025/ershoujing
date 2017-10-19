@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 public enum SmsCodeBizEnum {
     REGISTER             (1, "注册","register"),
     LOGIN                (2, "登录","login"),
+    RETRIEVAL_PASSWORD   (3, "找回密码","retrieval_password"),
     ;
 
     private final int value;

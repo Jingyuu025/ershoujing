@@ -37,6 +37,7 @@ public class BrandServiceImpl implements BrandService {
      */
     public void save(BrandBo brandBo) throws JyuException {
         String bName = brandBo.getBrandName();
+        String logoFid = brandBo.getLogoFid(); // 品牌LOGO文件编号
         byte[] data = brandBo.getData();
 
         List<BrandEntity> brandList = brandRepository.findByBNameLike(bName);
@@ -48,8 +49,12 @@ public class BrandServiceImpl implements BrandService {
         BrandEntity brand = BrandEntity.builder()
                 .bName(bName)
                 .build();
-        // 品牌图片处理
-        if (CommonUtil.isNotEmpty(data) && data.length > 0) {
+
+        // 指定品牌LOGO文件编号
+        if (CommonUtil.isNotEmpty(logoFid)) {
+            brand.setLogoFid(logoFid);
+        }
+        else if (CommonUtil.isNotEmpty(data) && data.length > 0) {
             // 上传品牌图片
             FileVo fileVo = fileService.saveFile(
                     FileBo.builder()

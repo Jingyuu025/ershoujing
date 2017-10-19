@@ -6,22 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author owen
- * @date 2017-09-29
+ * @date 2017-09-14
  */
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class FileUploadResult extends BaseBean {
+@NoArgsConstructor
+public class TagValueBatchResult extends BaseBean {
     /**
-     * 文件编号
+     * 新增标签值失败列表
      */
-    private String fileId;
-
-    /**
-     * 文件组编号
-     */
-    private String groupId;
+    List<String> tagValueSaveErrorList;
 }

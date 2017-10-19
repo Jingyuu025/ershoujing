@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jingyuu.ershoujing.dao.mybatis.mapper.TagMapper">
+
+    <select id="listTagKey"
+            parameterType="com.jingyuu.ershoujing.dao.mybatis.bo.TagKeyQueryBo"
+            resultType="com.jingyuu.ershoujing.dao.mybatis.vo.TagKeyVo">
+        SELECT
+        t.id,
+        t.type,
+        t.key_text AS keyText,
+        t.tip_text AS tipText,
+        t.tip_fid AS tipFid
+        FROM
+        jyu_tag_key t
+        <where>
+            <if test="key != null and key != ''">
+                t.key_text LIKE concat('%',#{key},'%')
+            </if>
+
+            <if test="type != null">
+                AND t.type = #{type}
+            </if>
+        </where>
+        ORDER BY t.add_time DESC
+    </select>
+
+
+    <select id="listTagValue"
+            parameterType="com.jingyuu.ershoujing.dao.mybatis.bo.TagValueQueryBo"
+            resultType="com.jingyuu.ershoujing.dao.mybatis.vo.TagValueVo">
+        SELECT
+        tk.type,
+        tk.id AS keyId,
+        tk.key_text AS keyText,
+        tv.id AS valueId,
+        tv.value_text AS valueText,
+        tv.value_type AS valueType,
+        tv.tip_text AS tipText,
+        tv.tip_fid AS tipFid
+        FROM
+        jyu_tag_value tv,
+        jyu_tag_key tk
+        <where>
+            tv.key_id = tk.id
+            <if test="type != null">
+                AND tk.type = #{type}
+            </if>
+            <if test="keyId != null">
+                AND tk.id = #{keyId}
+            </if>
+            <if test="keyText != null and keyText != ''">
+                AND tk.key_text LIKE concat('%',#{keyText},'%')
+            </if>
+
+            <if test="valueId != null">
+                AND tv.id = #{valueId}
+            </if>
+            <if test="valueText != null and valueText != ''">
+                AND tv.value_text LIKE concat('%',#{valueText},'%')
+            </if>
+        </where>
+        ORDER BY tk.id, tv.add_time DESC
+    </select>
+</mapper>
+

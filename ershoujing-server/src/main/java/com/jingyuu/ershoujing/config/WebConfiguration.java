@@ -20,6 +20,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
             "/error/**",
             "/user/login",                                    // 登录
             "/user/sms-login",                                // 短信登录
+            "/user/password/retrieval",                       // 找回密码
             "/user/logout",                                   // 登出
             "/user/register",                                 // 注册
             "/system/sms-code",                               // 获取短信验证码

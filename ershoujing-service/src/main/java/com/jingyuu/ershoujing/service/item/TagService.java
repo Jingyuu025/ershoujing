@@ -1,10 +1,16 @@
 package com.jingyuu.ershoujing.service.item;
 
 import com.jingyuu.ershoujing.common.exception.JyuException;
+import com.jingyuu.ershoujing.common.page.PageBean;
+import com.jingyuu.ershoujing.common.page.PageQuery;
 import com.jingyuu.ershoujing.dao.jpa.entity.item.TagKeyEntity;
 import com.jingyuu.ershoujing.dao.jpa.entity.item.TagValueEntity;
 import com.jingyuu.ershoujing.dao.mybatis.bo.TagKeyBo;
+import com.jingyuu.ershoujing.dao.mybatis.bo.TagKeyQueryBo;
 import com.jingyuu.ershoujing.dao.mybatis.bo.TagValueBo;
+import com.jingyuu.ershoujing.dao.mybatis.bo.TagValueQueryBo;
+import com.jingyuu.ershoujing.dao.mybatis.vo.TagKeyVo;
+import com.jingyuu.ershoujing.dao.mybatis.vo.TagValueVo;
 
 import java.util.List;
 
@@ -19,7 +25,7 @@ public interface TagService {
      * @param tagKeyBo 标签健
      * @throws JyuException
      */
-    void saveTagKey(TagKeyBo tagKeyBo) throws JyuException;
+    TagKeyEntity saveTagKey(TagKeyBo tagKeyBo) throws JyuException;
 
     /**
      * 获取标签健详情
@@ -39,12 +45,30 @@ public interface TagService {
     TagKeyEntity loadTagKey(Long tagKeyId) throws JyuException;
 
     /**
+     * 查询标签健列表
+     *
+     * @param pageQuery 查询表单
+     * @return
+     * @throws JyuException
+     */
+    PageBean<TagKeyVo> listTagKey(PageQuery<TagKeyQueryBo> pageQuery) throws JyuException;
+
+    /**
      * 新增标签值
      *
      * @param tagValueBo 标签值
      * @throws JyuException
      */
-    void saveTagValue(TagValueBo tagValueBo) throws JyuException;
+    TagValueEntity saveTagValue(TagValueBo tagValueBo) throws JyuException;
+
+
+    /**
+     * 批量新增标签值
+     *
+     * @param tagValueBoList 标签值列表
+     * @return 返回新增失败的标签值
+     */
+    List<String> saveTagValueBatch(List<TagValueBo> tagValueBoList) throws JyuException;
 
     /**
      * 获取标签值详情
@@ -64,9 +88,11 @@ public interface TagService {
     TagValueEntity loadTagValue(Long tagValueId) throws JyuException;
 
     /**
-     * @param tagKeyId
+     * 查询标签值列表
+     *
+     * @param pageQuery 查询表单
      * @return
      */
-    List<TagValueEntity> listTagValue(Long tagKeyId);
+    PageBean<TagValueVo> listTagValue(PageQuery<TagValueQueryBo> pageQuery) throws JyuException;
 
 }

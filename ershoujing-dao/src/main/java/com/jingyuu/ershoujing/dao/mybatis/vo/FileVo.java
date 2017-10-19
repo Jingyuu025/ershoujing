@@ -23,6 +23,11 @@ public class FileVo extends BaseBean {
     private String fileId;
 
     /**
+     * 文件组编号
+     */
+    private String groupId;
+
+    /**
      * 文件名称
      */
     private String fileName;

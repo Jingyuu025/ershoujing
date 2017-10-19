@@ -70,11 +70,14 @@
             <artifactId>jdom</artifactId>
         </dependency>
 
-
-
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.tbud</groupId>
+            <artifactId>spring-boot-starter-dubbo</artifactId>
         </dependency>
 
     </dependencies>

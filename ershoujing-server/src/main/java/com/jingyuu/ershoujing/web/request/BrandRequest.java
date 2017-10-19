@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
@@ -20,9 +19,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ApiModel("品牌请求")
 public class BrandRequest {
-    @ApiModelProperty(value = "品牌名称", required = true, example = "苹果")
+    @ApiModelProperty(value = "品牌名称", required = true, example = "华为")
     @NotNull(message = "品牌名称缺失")
     private String brandName;
 
-    private MultipartFile file;
+    @ApiModelProperty(value = "品牌LOGO文件编号",  example = "b7f9a73bb986979f371dab46b6582b51")
+    private String logoFid;
 }

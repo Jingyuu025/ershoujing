@@ -15,11 +15,11 @@ spring:
     include:
       - business
   datasource:
-    # 127.0.0.1:3306 / root / sa
-    # 47.95.245.38   / jingyuu / Jingyuu123!@#
-    url: jdbc:mysql://47.95.245.38:33306/jingyuu?useUnicode=true&characterEncoding=utf-8
-    username: jingyuu
-    password: Jingyuu123!@#
+    # 127.0.0.1:3306      / root    / sa
+    # 47.95.245.38:33306  / jingyuu / Jingyuu123!@#
+    url: jdbc:mysql://127.0.0.1:3306/jingyuu?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: sa
     driver-class-name: com.mysql.jdbc.Driver
     dbcp2:
       validation-query: select 1

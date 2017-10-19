@@ -1,7 +1,6 @@
-package com.jingyuu.ershoujing.dao.mybatis.bo;
+package com.jingyuu.ershoujing.dao.mybatis.vo;
 
 import com.jingyuu.ershoujing.common.base.BaseBean;
-import com.jingyuu.ershoujing.common.statics.enums.TagKeyTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,24 +14,29 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TagKeyBo extends BaseBean {
+public class TagKeyVo extends BaseBean {
     /**
-     * 健类型
+     * 健编号
      */
-    private TagKeyTypeEnum keyTypeEnum;
+    private Long id;
+
+    /**
+     * 类型
+     */
+    private Integer type;
 
     /**
      * 健
      */
-    private String key;
+    private String keyText;
 
     /**
-     * 键提示文本
+     * 提示文本
      */
     private String tipText;
 
     /**
-     * 健提示图片编号
+     * 提示图片编号
      */
     private String tipFid;
 }

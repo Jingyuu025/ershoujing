@@ -7,8 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -25,6 +23,6 @@ public class SmsCodeRequest {
     @NotNull(message = "手机缺失")
     private String telephone;
 
-    @ApiModelProperty(value = "业务类型 1：注册,2：登录", required = true, allowableValues = "1：注册,2：登录", example = "1")
+    @ApiModelProperty(value = "业务类型 1：注册,2：登录 3:找回密码", required = true, allowableValues = "1：注册,2：登录 3：找回密码", example = "1")
     private Integer businessType;
 }

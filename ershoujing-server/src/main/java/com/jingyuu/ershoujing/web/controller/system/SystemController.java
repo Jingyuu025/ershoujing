@@ -30,9 +30,6 @@ public class SystemController extends BaseController {
     @Autowired
     private SmsService smsService;
 
-    /**
-     * 获取短信验证码
-     */
     @ApiOperation(value = "获取短信验证码")
     @RequestMapping(value = "/sms-code", method = RequestMethod.POST)
     public ResponseEntity<BaseResp<SmsCodeResult>> getSmsCode(@RequestBody @Valid SmsCodeRequest smsCodeRequest)
@@ -56,5 +53,4 @@ public class SystemController extends BaseController {
                         .build()
         ));
     }
-
 }

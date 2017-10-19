@@ -144,6 +144,7 @@ public class FileServiceImpl implements FileService {
                             .build()
             );
 
+            fileVo.setGroupId(groupId);
             return fileVo;
         }
         return null;

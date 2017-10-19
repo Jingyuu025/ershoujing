@@ -30,6 +30,9 @@ public class TagValueEntity extends BaseIdentityEntity {
     @Column(name = "value_text", columnDefinition = "VARCHAR(64) COMMENT '键值'")
     private String valueText;
 
+    @Column(name = "value_type", columnDefinition = "SMALLINT(6) COMMENT ', 1：短标签 2：长标签'")
+    private Integer valueType;
+
     @Column(name = "tip_text", columnDefinition = "VARCHAR(512) COMMENT '键提示文本'")
     private String tipText;
 

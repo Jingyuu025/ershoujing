@@ -32,9 +32,6 @@ public class CategoryController extends BaseController {
     @Autowired
     private CategoryService categoryService;
 
-    /**
-     * 新增类目
-     */
     @Log("新增类目")
     @ApiOperation(value = "新增类目")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -49,9 +46,6 @@ public class CategoryController extends BaseController {
         return ResponseEntity.ok(BaseResp.ok());
     }
 
-    /**
-     * 查询类目列表
-     */
     @Log("查询类目列表")
     @ApiOperation(value = "查询类目列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)

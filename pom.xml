@@ -57,12 +57,6 @@
                 <version>${ershoujing.version}</version>
             </dependency>
 
-
-            <dependency>
-                <groupId>io.tbud</groupId>
-                <artifactId>spring-boot-starter-dubbo</artifactId>
-            </dependency>
-
             <!-- Test -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -70,7 +64,6 @@
                 <version>1.5.6.RELEASE</version>
                 <scope>test</scope>
             </dependency>
-
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
@@ -160,7 +153,6 @@
             </dependency>
 
 
-
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
@@ -195,18 +187,6 @@
                 <artifactId>jdom</artifactId>
                 <version>1.0</version>
             </dependency>
-
-
-
-
-
-            <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
-            <!--<dependency>-->
-                <!--<groupId>net.coobird</groupId>-->
-                <!--<artifactId>thumbnailator</artifactId>-->
-                <!--<version>0.4.8</version>-->
-            <!--</dependency>-->
-
 
         </dependencies>
     </dependencyManagement>

@@ -7,6 +7,7 @@ import com.jingyuu.ershoujing.common.utils.IPUtil;
 import com.jingyuu.ershoujing.dao.mybatis.bo.LoginBo;
 import com.jingyuu.ershoujing.dao.mybatis.bo.ModifyPasswordBo;
 import com.jingyuu.ershoujing.dao.mybatis.bo.RegisterBo;
+import com.jingyuu.ershoujing.dao.mybatis.bo.RetrievalPasswordBo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.LoginVo;
 import com.jingyuu.ershoujing.service.support.annotation.Log;
 import com.jingyuu.ershoujing.service.user.UserService;
@@ -15,6 +16,7 @@ import com.jingyuu.ershoujing.web.domain.User;
 import com.jingyuu.ershoujing.web.request.LoginRequest;
 import com.jingyuu.ershoujing.web.request.ModifyPasswordRequest;
 import com.jingyuu.ershoujing.web.request.RegisterRequest;
+import com.jingyuu.ershoujing.web.request.RetrievalPasswordRequest;
 import com.jingyuu.ershoujing.web.response.BaseResp;
 import com.jingyuu.ershoujing.web.response.LoginResult;
 import io.swagger.annotations.Api;
@@ -37,9 +39,6 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    /**
-     * 登录
-     */
     @ApiOperation(value = "登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<BaseResp<LoginResult>> login(@RequestBody @Valid LoginRequest loginRequest,
@@ -72,10 +71,6 @@ public class UserController extends BaseController {
         );
     }
 
-
-    /**
-     * 短信登录
-     */
     @ApiOperation(value = "短信登录")
     @RequestMapping(value = "/sms-login", method = RequestMethod.POST)
     public ResponseEntity<BaseResp<LoginResult>> smsLogin(@RequestBody @Valid LoginRequest loginRequest,
@@ -108,9 +103,6 @@ public class UserController extends BaseController {
         );
     }
 
-    /**
-     * 注册
-     */
     @ApiOperation(value = "注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<BaseResp<String>> register(@RequestBody @Valid RegisterRequest registerRequest,
@@ -127,9 +119,6 @@ public class UserController extends BaseController {
         return ResponseEntity.ok(BaseResp.ok("注册成功"));
     }
 
-    /**
-     * 修改密码
-     */
     @Log(value = "修改密码")
     @ApiOperation(value = "修改密码")
     @RequestMapping(value = "/password/modify", method = RequestMethod.POST)
@@ -150,4 +139,23 @@ public class UserController extends BaseController {
         return ResponseEntity.ok(BaseResp.ok("修改密码成功"));
     }
 
+    @Log(value = "找回密码")
+    @ApiOperation(value = "找回密码")
+    @RequestMapping(value = "/password/retrieval", method = RequestMethod.POST)
+    public ResponseEntity<BaseResp<String>> retrievalPassword(
+            @RequestBody @Valid RetrievalPasswordRequest retrievalPasswordRequest) throws JyuException {
+        String telephone = retrievalPasswordRequest.getTelephone();
+        String password = retrievalPasswordRequest.getPassword();
+        String code = retrievalPasswordRequest.getCode();
+
+        // 构建RetrievalPasswordBo
+        RetrievalPasswordBo retrievalPassword = RetrievalPasswordBo.builder()
+                .telephone(telephone)
+                .password(password)
+                .code(code)
+                .build();
+        userService.retrievalPassword(retrievalPassword);
+
+        return ResponseEntity.ok(BaseResp.ok("找回密码成功"));
+    }
 }

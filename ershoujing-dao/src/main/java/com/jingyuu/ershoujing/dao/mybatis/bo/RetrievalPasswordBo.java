@@ -8,25 +8,25 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author owen
- * @date 2017-10-09
+ * @date 2017-09-15
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrandBo extends BaseBean {
+public class RetrievalPasswordBo extends BaseBean {
     /**
-     * 品牌名称
+     * 手机号
      */
-    private String brandName;
+    private String telephone;
 
     /**
-     * Logo文件编号
+     * 密码
      */
-    private String logoFid;
+    private String password;
 
     /**
-     * 品牌图片
+     * 验证码
      */
-    private byte[] data;
+    private String code;
 }

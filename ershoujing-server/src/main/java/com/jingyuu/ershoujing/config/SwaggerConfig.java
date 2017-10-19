@@ -37,7 +37,8 @@ public class SwaggerConfig {
                 regex("/file.*"),        // 文件
                 regex("/user.*"),        // 用户
                 regex("/category.*"),    // 类目
-                regex("/brand.*")        // 品牌
+                regex("/brand.*"),       // 品牌
+                regex("/tag.*")          // 标签
 
         );
     }

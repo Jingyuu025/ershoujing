@@ -9,25 +9,25 @@ import java.util.stream.Stream;
  * @date 2017-09-13
  */
 @Getter
-public enum TerminalEnum {
-    PC             (1, "电脑端"),
-    MOBILE         (2, "移动端"),
+public enum TagValueTypeEnum {
+    SHORT             (1, "短值"),
+    LONG              (2, "长值"),
     ;
 
     private final int value;
     private final String name;
 
-    TerminalEnum(int value, String name) {
+    TagValueTypeEnum(int value, String name) {
         this.value = value;
         this.name = name;
     }
 
-    public static TerminalEnum fromValue(Integer value) {
+    public static TagValueTypeEnum fromValue(Integer value) {
         if (null == value) {
             return null;
         }
 
-        return Stream.of(TerminalEnum.values())
+        return Stream.of(TagValueTypeEnum.values())
                 .filter(val -> value.equals(val.getValue()))
                 .findFirst()
                 .orElse(null);

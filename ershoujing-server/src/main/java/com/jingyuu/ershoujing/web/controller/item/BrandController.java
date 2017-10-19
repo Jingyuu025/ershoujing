@@ -9,6 +9,7 @@ import com.jingyuu.ershoujing.service.item.BrandService;
 import com.jingyuu.ershoujing.service.support.annotation.Log;
 import com.jingyuu.ershoujing.web.controller.BaseController;
 import com.jingyuu.ershoujing.web.domain.Brand;
+import com.jingyuu.ershoujing.web.request.BrandRequest;
 import com.jingyuu.ershoujing.web.response.BaseResp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,15 +35,29 @@ public class BrandController extends BaseController {
     @Autowired
     private BrandService brandService;
 
-    /**
-     * 新增品牌
-     */
     @Log("新增品牌")
-    @ApiOperation(value = "新增品牌")
+    @ApiOperation(value = "新增品牌(不支持同时上传图片，需要上传品牌图片请先调用文件服务上传)")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<BaseResp> save(
             @RequestHeader(JyuConstant.TOKEN_HEADER) String token,
-            @RequestBody(required = false) MultipartFile file, @RequestParam String brandName)
+            @RequestBody BrandRequest brandRequest)
+            throws JyuException {
+        brandService.save(
+                BrandBo.builder()
+                        .brandName(brandRequest.getBrandName())
+                        .logoFid(brandRequest.getLogoFid())
+                        .build()
+        );
+        return ResponseEntity.ok(BaseResp.ok());
+    }
+
+    @Log("新增品牌(支持同时上传图片)")
+    @ApiOperation(value = "新增品牌(支持同时上传图片)")
+    @RequestMapping(value = "/save-with-upload", method = RequestMethod.POST)
+    public ResponseEntity<BaseResp> save(
+            @RequestHeader(JyuConstant.TOKEN_HEADER) String token,
+            @RequestParam String brandName,
+            @RequestParam(required = false) MultipartFile file)
             throws JyuException, IOException {
         brandService.save(
                 BrandBo.builder()
@@ -53,9 +68,6 @@ public class BrandController extends BaseController {
         return ResponseEntity.ok(BaseResp.ok());
     }
 
-    /**
-     * 查询品牌列表
-     */
     @Log("查询品牌列表")
     @ApiOperation(value = "查询品牌列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)

@@ -7,10 +7,7 @@ import com.jingyuu.ershoujing.common.utils.DateUtil;
 import com.jingyuu.ershoujing.common.utils.Md5Util;
 import com.jingyuu.ershoujing.dao.jpa.entity.user.UserEntity;
 import com.jingyuu.ershoujing.dao.jpa.repository.user.UserRepository;
-import com.jingyuu.ershoujing.dao.mybatis.bo.LoginBo;
-import com.jingyuu.ershoujing.dao.mybatis.bo.ModifyPasswordBo;
-import com.jingyuu.ershoujing.dao.mybatis.bo.RegisterBo;
-import com.jingyuu.ershoujing.dao.mybatis.bo.SmsCodeBo;
+import com.jingyuu.ershoujing.dao.mybatis.bo.*;
 import com.jingyuu.ershoujing.dao.mybatis.vo.LoginVo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.UserSessionVo;
 import com.jingyuu.ershoujing.service.support.event.ActionEvent;
@@ -277,6 +274,38 @@ public class UserServiceImpl implements UserService {
         salt = Md5Util.md5(String.valueOf(System.currentTimeMillis())); // 盐值
         userEntity.setSalt(salt);
         userEntity.setPassword(generatorPassword(newPassword, salt));
+        userRepository.save(userEntity);
+    }
+
+    @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    public void retrievalPassword(RetrievalPasswordBo retrievalPasswordBo) throws JyuException {
+        String telephone = retrievalPasswordBo.getTelephone();
+        String code = retrievalPasswordBo.getCode();
+        String password = retrievalPasswordBo.getPassword();
+
+        // 验证验证码
+        SmsCodeBo smsCodeBo = SmsCodeBo.builder()
+                .telephone(telephone)
+                .businessType(SmsCodeBizEnum.RETRIEVAL_PASSWORD.getValue())
+                .build();
+        if (!smsService.checkSmsCode(smsCodeBo, code)) {
+            throw new JyuException(ErrorEnum.DATA_IS_ERROR, "验证码错误");
+        }
+
+        // 查询用户信息
+        UserEntity userEntity = userService.loadByTelephone(telephone);
+
+        // 验证用户状态
+        int state = userEntity.getState();
+        if (!UserStateEnum.OK.equals(UserStateEnum.fromValue(state))) {
+            throw new JyuException(ErrorEnum.DATA_IS_ERROR, "用户状态异常");
+        }
+
+        // 更新盐值、密码
+        String salt = Md5Util.md5(String.valueOf(System.currentTimeMillis())); // 盐值
+        userEntity.setSalt(salt);
+        userEntity.setPassword(generatorPassword(password, salt));
         userRepository.save(userEntity);
     }
 }

@@ -19,4 +19,13 @@ public interface TagValueRepository extends BaseRepository<TagValueEntity, Long>
      * @return
      */
     List<TagValueEntity> findByKeyId(Long keyId);
+
+    /**
+     * 查询标签值列表
+     *
+     * @param keyId 标签健编号
+     * @param value 标签值
+     * @return
+     */
+    List<TagValueEntity> findByKeyIdAndValueTextLike(Long keyId, String value);
 }

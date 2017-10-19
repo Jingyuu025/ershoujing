@@ -14,19 +14,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrandBo extends BaseBean {
+public class TagKeyQueryBo extends BaseBean {
     /**
-     * 品牌名称
+     * 类型
      */
-    private String brandName;
+    private Integer type;
 
     /**
-     * Logo文件编号
+     * 健
      */
-    private String logoFid;
-
-    /**
-     * 品牌图片
-     */
-    private byte[] data;
+    private String key;
 }

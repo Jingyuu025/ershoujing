@@ -33,9 +33,7 @@ public class MyBatisPageSupport {
     // 分页业务
     @Around(value = "serviceMethod() && pageMethod()")
     public Object mybatisPageProcess(ProceedingJoinPoint pjp) throws Throwable {
-        // 分页参数
         PageQuery pageQuery = (PageQuery) pjp.getArgs()[0];
-        // 分页
         PageHelper.offsetPage(pageQuery.getStartIndex(), pageQuery.getPageSize());
         return pjp.proceed();
     }

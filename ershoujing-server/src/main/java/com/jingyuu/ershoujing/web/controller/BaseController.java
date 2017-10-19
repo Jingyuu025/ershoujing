@@ -29,10 +29,7 @@ public class BaseController {
     public UserEntity getUser(String token) throws JyuException {
         // 查询用户会话
         String userId = this.getUserId(token);
-
-        // 查询用户详情
-        UserEntity userEntity = userService.load(userId);
-        return userEntity;
+        return userService.load(userId);
     }
 
     /**
