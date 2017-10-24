@@ -19,6 +19,23 @@ public interface CategoryService {
     void save(CategoryBo categoryBo) throws JyuException;
 
     /**
+     * 查询类目详情
+     *
+     * @param categoryId 类目编号
+     * @return
+     * @throws JyuException
+     */
+    CategoryEntity load(long categoryId) throws JyuException;
+
+    /**
+     * 查询类目详情
+     *
+     * @param categoryId 类目编号
+     * @return
+     */
+    CategoryEntity get(long categoryId);
+
+    /**
      * 查询类目列表
      *
      * @return

@@ -17,6 +17,7 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
     /**
      * 返回所有的列表数据
      */
+    @Override
     List<T> findAll();
 
     /**
@@ -24,6 +25,7 @@ public interface BaseRepository<T, ID extends Serializable> extends JpaRepositor
      *
      * @param sort 排序
      */
+    @Override
     List<T> findAll(Sort sort);
 
     /**

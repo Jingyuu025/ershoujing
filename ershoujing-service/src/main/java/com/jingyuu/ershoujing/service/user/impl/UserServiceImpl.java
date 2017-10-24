@@ -255,6 +255,8 @@ public class UserServiceImpl implements UserService {
      * @param modifyPasswordBo 更新密码表单
      * @throws JyuException
      */
+    @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
     public void modifyPassword(ModifyPasswordBo modifyPasswordBo) throws JyuException {
         String telephone = modifyPasswordBo.getTelephone();
         String oldPassword = modifyPasswordBo.getOldPassword(); // 原密码

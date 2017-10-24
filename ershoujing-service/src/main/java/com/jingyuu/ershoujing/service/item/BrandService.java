@@ -19,6 +19,22 @@ public interface BrandService {
     void save(BrandBo brandBo) throws JyuException;
 
     /**
+     * 查询品牌详情
+     *
+     * @param brandId 品牌编号
+     * @return
+     */
+    BrandEntity get(long brandId);
+
+    /**
+     * 查询品牌详情
+     *
+     * @param brandId 品牌编号
+     * @return
+     */
+    BrandEntity load(long brandId) throws JyuException;
+
+    /**
      * 查询品牌列表
      *
      * @return

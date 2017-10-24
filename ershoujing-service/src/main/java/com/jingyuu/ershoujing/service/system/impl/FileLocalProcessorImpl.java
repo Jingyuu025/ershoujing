@@ -39,6 +39,7 @@ public class FileLocalProcessorImpl implements FileProcessor, FileReadProcessor 
      * @param fileBo
      * @return
      */
+    @Override
     public FileLocalProcessResult process(FileBo fileBo) throws IOException {
         String fileName = fileBo.getFileName();
         byte[] data = fileBo.getData();
@@ -148,7 +149,7 @@ public class FileLocalProcessorImpl implements FileProcessor, FileReadProcessor 
      * @return
      */
     private String generateFileName(String fileType) {
-        String fileName = new Date().getTime() + RandomUtil.createRandomNumber(6);
+        String fileName = System.currentTimeMillis() + RandomUtil.createRandomNumber(6);
         if (null != fileType) {
             return fileName + "." + fileType;
         } else {

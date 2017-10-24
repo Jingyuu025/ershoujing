@@ -13,6 +13,8 @@ import com.jingyuu.ershoujing.service.system.FileService;
 import com.jingyuu.ershoujing.service.system.impl.FileConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,6 +37,8 @@ public class BrandServiceImpl implements BrandService {
      *
      * @param brandBo
      */
+    @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
     public void save(BrandBo brandBo) throws JyuException {
         String bName = brandBo.getBrandName();
         String logoFid = brandBo.getLogoFid(); // 品牌LOGO文件编号
@@ -53,8 +57,7 @@ public class BrandServiceImpl implements BrandService {
         // 指定品牌LOGO文件编号
         if (CommonUtil.isNotEmpty(logoFid)) {
             brand.setLogoFid(logoFid);
-        }
-        else if (CommonUtil.isNotEmpty(data) && data.length > 0) {
+        } else if (CommonUtil.isNotEmpty(data) && data.length > 0) {
             // 上传品牌图片
             FileVo fileVo = fileService.saveFile(
                     FileBo.builder()
@@ -74,11 +77,29 @@ public class BrandServiceImpl implements BrandService {
         brandRepository.save(brand);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public BrandEntity get(long brandId) {
+        return brandRepository.findOne(brandId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public BrandEntity load(long brandId) throws JyuException {
+        BrandEntity brandEntity = this.get(brandId);
+        if (CommonUtil.isEmpty(brandEntity)) {
+            throw new JyuException(ErrorEnum.DATA_NOT_FOUND, "品牌不存在! 品牌编号:" + brandId);
+        }
+        return brandEntity;
+    }
+
     /**
      * 查询品牌列表
      *
      * @return
      */
+    @Override
+    @Transactional(readOnly = true)
     public List<BrandEntity> listBrand() {
         List<BrandEntity> brandList = brandRepository.findAll();
         return brandList;

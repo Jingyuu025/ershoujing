@@ -14,6 +14,7 @@ import java.io.IOException;
 @Slf4j
 @Component
 public class CORSFilter implements Filter {
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response1 = (HttpServletResponse) response;
@@ -25,9 +26,11 @@ public class CORSFilter implements Filter {
         chain.doFilter(request, response1);
     }
 
+    @Override
     public void init(FilterConfig fConfig) throws ServletException {
     }
 
+    @Override
     public void destroy() {
     }
 }

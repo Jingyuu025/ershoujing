@@ -18,7 +18,7 @@ import java.util.Properties;
  * @author owen
  * @date 2017-08-10
  */
-public abstract class IdGenerator extends TableGenerator {
+public abstract class AbstractIdGenerator extends TableGenerator {
     public static final String INIT_VALUE = "1";
     private static final String TABLE_NAME = "jyu_primary_key";
     private static final String SEGMENT_COLUMN_NAME = "name";

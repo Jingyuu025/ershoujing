@@ -179,6 +179,7 @@ public class SmsServiceImpl implements SmsService {
      * @param sms
      */
     // FIXME: 20/09/2017 对接短信通道
+    @Override
     @Async
     @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
     public void sendSms(SmsEntity sms) {

@@ -53,4 +53,7 @@ public class ItemTemplateEntity extends BaseCustomIdEntity {
 
     @Column(name = "state", columnDefinition = "SMALLINT(6) COMMENT '状态 1：上架 2：下架'")
     private Integer state;
+
+    @Column(name = "item_fid", columnDefinition = "VARCHAR(64) COMMENT '商品模板图片编号'")
+    private String itemFid;
 }

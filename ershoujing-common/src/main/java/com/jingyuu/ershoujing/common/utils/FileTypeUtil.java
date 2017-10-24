@@ -1,5 +1,7 @@
 package com.jingyuu.ershoujing.common.utils;
 
+import lombok.Cleanup;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -13,6 +15,7 @@ import java.io.*;
 public class FileTypeUtil {
     private FileTypeUtil() {
     }
+
     /**
      * Created on 2010-7-1
      * <p>Discription:[getFileByFile,获取文件类型,包括图片,若格式不是已配置的,则返回null]</p>
@@ -25,7 +28,7 @@ public class FileTypeUtil {
         FileTypeEnum filetype = null;
         byte[] b = new byte[50];
         try {
-            InputStream is = new FileInputStream(file);
+            @Cleanup InputStream is = new FileInputStream(file);
             is.read(b);
             filetype = getFileTypeByStream(b);
             is.close();

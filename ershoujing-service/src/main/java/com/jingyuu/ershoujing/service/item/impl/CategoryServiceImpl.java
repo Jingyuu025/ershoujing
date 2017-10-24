@@ -40,6 +40,23 @@ public class CategoryServiceImpl implements CategoryService {
         );
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public CategoryEntity get(long categoryId) {
+        return categoryRepository.findOne(categoryId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public CategoryEntity load(long categoryId) throws JyuException {
+        CategoryEntity categoryEntity = this.get(categoryId);
+        if (CommonUtil.isEmpty(categoryEntity)) {
+            throw new JyuException(ErrorEnum.DATA_NOT_FOUND, "类目不存在! 类目编号:" + categoryId);
+        }
+
+        return categoryEntity;
+    }
+
 
     @Override
     @Transactional(readOnly = true)

@@ -33,20 +33,20 @@ public class SwaggerConfig {
 
     private Predicate<String> hadesPaths() {
         return or(
-                regex("/system.*"),      // 系统
-                regex("/file.*"),        // 文件
-                regex("/user.*"),        // 用户
-                regex("/category.*"),    // 类目
-                regex("/brand.*"),       // 品牌
-                regex("/tag.*")          // 标签
-
+                regex("/system.*"),            // 系统
+                regex("/file.*"),              // 文件
+                regex("/user.*"),              // 用户
+                regex("/category.*"),          // 类目
+                regex("/brand.*"),             // 品牌
+                regex("/tag.*"),               // 标签
+                regex("/item-template.*")      // 商品模板
         );
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("二手鲸 - Er shou jing")
-                .description("二手鲸接口服务")
+                .title("Er shou jing 🐳")
+                .description("Er shou jing API")
                 .contact(new Contact("Owen（i-owen@live.cn）", "http://www.jingyuu.com", "i-owen@live.cn"))
                 .version("1.0.0")
                 .build();
