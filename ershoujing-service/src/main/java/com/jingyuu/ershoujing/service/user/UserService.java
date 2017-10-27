@@ -50,6 +50,27 @@ public interface UserService {
 
 
     /**
+     * 查询用户详情
+     *
+     * @param token  用户令牌
+     * @param userId 用户编号
+     * @return
+     */
+    UserEntity get(String token, String userId);
+
+
+    /**
+     * 查询用户详情
+     *
+     * @param token  用户令牌
+     * @param userId 用户编号
+     * @return
+     * @throws JyuException
+     */
+    UserEntity load(String token, String userId) throws JyuException;
+
+
+    /**
      * 登录
      *
      * @param loginBo 登录表单

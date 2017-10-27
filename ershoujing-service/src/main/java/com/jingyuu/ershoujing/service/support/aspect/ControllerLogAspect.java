@@ -132,6 +132,7 @@ public class ControllerLogAspect {
         // 发布行为事件
         eventPublisher.publishEvent(
                 ActionEvent.builder()
+                        .token(token)
                         .userId(userId)
                         .action(action)
                         .path(

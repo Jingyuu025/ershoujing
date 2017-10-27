@@ -13,6 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 abstract class AbstractEvent {
     /**
+     * 访问令牌
+     */
+    private String token;
+
+    /**
      * 用户编号
      */
     private String userId;

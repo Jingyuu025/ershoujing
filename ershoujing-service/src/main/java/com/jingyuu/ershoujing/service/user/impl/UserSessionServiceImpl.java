@@ -29,12 +29,12 @@ import java.util.UUID;
 @Service
 public class UserSessionServiceImpl implements UserSessionService {
     // 移动端访问Token过期时间：2天,刷新Token过期时间：7天
-    private final int ACCESS_TOKEN_EXPIRE_SECONDS_MOBILE = 60 * 60 * 24 * 2;
-    private final int REFRESH_TOKEN_EXPIRE_SECONDS_MOBILE = 60 * 60 * 24 * 7;
+    private final int ACCESS_TOKEN_EXPIRE_SECONDS_MOBILE = 2 * 24 * 60 * 60;
+    private final int REFRESH_TOKEN_EXPIRE_SECONDS_MOBILE = 7 * 24 * 60 * 60;
 
     // PC端 访问Token过期时间：45分钟,刷新Token过期时间: 1天
-    private final int ACCESS_TOKEN_EXPIRE_SECONDS_PC = 60 * 45;
-    private final int REFRESH_TOKEN_EXPIRE_SECONDS_PC = 60 * 60 * 24;
+    private final int ACCESS_TOKEN_EXPIRE_SECONDS_PC = 45 * 60;
+    private final int REFRESH_TOKEN_EXPIRE_SECONDS_PC = 24 * 60 * 60;
 
     @Autowired
     private UserService userService;
@@ -139,11 +139,11 @@ public class UserSessionServiceImpl implements UserSessionService {
 
         // 创建令牌相关信息
         String accessToken = this.createAccessToken();
-        Date expireIn = this.createExpireIn(terminal);
         Date grantTime = DateUtil.currentDate();
+        Date expireIn = this.createExpireIn(grantTime, terminal);
 
         String refreshToken = this.createRefreshToken();
-        Date refreshExpireIn = this.createRefreshExpireIn(terminal);
+        Date refreshExpireIn = this.createRefreshExpireIn(grantTime, terminal);
 
         // 保存令牌信息
         UserSessionEntity userSessionEntity = this.get(userId);
@@ -198,8 +198,8 @@ public class UserSessionServiceImpl implements UserSessionService {
     /**
      * 生成访问令牌过期时间
      */
-    private final Date createExpireIn(TerminalEnum terminal) {
-        return getExpireDate(getAccessTokenExpireSeconds(terminal));
+    private final Date createExpireIn(Date grantDate, TerminalEnum terminal) {
+        return getExpireDate(grantDate, getAccessTokenExpireSeconds(terminal));
     }
 
     /**
@@ -213,17 +213,18 @@ public class UserSessionServiceImpl implements UserSessionService {
     /**
      * 生成刷新令牌过期时间
      */
-    private final Date createRefreshExpireIn(TerminalEnum terminal) {
-        return getExpireDate(getRefreshTokenExpireSeconds(terminal));
+    private final Date createRefreshExpireIn(Date grantDate, TerminalEnum terminal) {
+        return getExpireDate(grantDate, getRefreshTokenExpireSeconds(terminal));
     }
 
     /**
      * 生成过期时间
      *
-     * @param seconds
+     * @param grantDate 授予时间
+     * @param seconds   秒数
      */
-    private final Date getExpireDate(Integer seconds) {
-        return DateUtils.addSeconds(DateUtil.currentDate(), seconds);
+    private final Date getExpireDate(Date grantDate, Integer seconds) {
+        return DateUtils.addSeconds(grantDate, seconds);
     }
 
     /**

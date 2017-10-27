@@ -1,5 +1,6 @@
 package com.jingyuu.ershoujing.service.system.impl;
 
+import com.jingyuu.ershoujing.common.utils.CommonUtil;
 import com.jingyuu.ershoujing.dao.jpa.entity.sytem.LogEntity;
 import com.jingyuu.ershoujing.dao.jpa.entity.user.UserEntity;
 import com.jingyuu.ershoujing.dao.jpa.repository.system.LogRepository;
@@ -34,10 +35,16 @@ public class LogServiceImpl implements LogService {
     @EventListener
     @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
     public void onAction(ActionEvent event) {
-        String userId = event.getUserId();
+        String token = event.getToken(); // 令牌
+        String userId = event.getUserId(); // 用户编号
 
         // 查询用户详情
-        UserEntity userEntity = userService.get(userId);
+        UserEntity userEntity = null;
+        if (CommonUtil.isNotEmpty(token)) {
+            userEntity = userService.get(token, userId);
+        } else {
+            userEntity = userService.get(userId);
+        }
 
         // 保存日志
         logRepository.save(

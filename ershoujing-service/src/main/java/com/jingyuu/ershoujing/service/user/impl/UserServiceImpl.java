@@ -10,6 +10,7 @@ import com.jingyuu.ershoujing.dao.jpa.repository.user.UserRepository;
 import com.jingyuu.ershoujing.dao.mybatis.bo.*;
 import com.jingyuu.ershoujing.dao.mybatis.vo.LoginVo;
 import com.jingyuu.ershoujing.dao.mybatis.vo.UserSessionVo;
+import com.jingyuu.ershoujing.service.support.RedisService;
 import com.jingyuu.ershoujing.service.support.event.ActionEvent;
 import com.jingyuu.ershoujing.service.support.event.LoginSuccessEvent;
 import com.jingyuu.ershoujing.service.system.SmsService;
@@ -21,8 +22,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
+import static com.jingyuu.ershoujing.common.statics.constants.RedisKeyConstant.USER_INFO;
+import static com.jingyuu.ershoujing.common.statics.constants.RedisKeyConstant.USER_SESSION;
 import static com.jingyuu.ershoujing.service.support.UserSupport.generatorNickName;
 import static com.jingyuu.ershoujing.service.support.UserSupport.generatorPassword;
 
@@ -38,11 +44,19 @@ public class UserServiceImpl implements UserService {
     private UserSessionService userSessionService;
     @Autowired
     private SmsService smsService;
+    @Autowired
+    private RedisService redisService;
 
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private ApplicationEventPublisher eventPublisher;
+
+//    public static void main(String[] args) {
+//        UserEntity userEntity = UserEntity.builder().build();
+//        System.out.println(userEntity.getClass().getCanonicalName());
+//        System.out.println(userEntity.getClass().getName());
+//    }
 
     @Override
     @Transactional(readOnly = true)
@@ -79,6 +93,30 @@ public class UserServiceImpl implements UserService {
         if (CommonUtil.isEmpty(userEntity)) {
             throw new JyuException(ErrorEnum.DATA_NOT_FOUND, "用户不存在! 用户编号:" + userId);
         }
+        return userEntity;
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserEntity get(String token, String userId) {
+        // 从缓存中加载用户详情
+        UserEntity userEntity = (UserEntity) redisService.get(USER_INFO + token);
+        if (CommonUtil.isEmpty(userEntity)) {
+            userEntity = this.get(userId);
+        }
+
+        return userEntity;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserEntity load(String token, String userId) throws JyuException {
+        UserEntity userEntity = this.get(token, userId);
+        if (CommonUtil.isEmpty(userEntity)) {
+            throw new JyuException(ErrorEnum.DATA_NOT_FOUND, "用户不存在！用户编号: " + userId);
+        }
+
         return userEntity;
     }
 
@@ -127,9 +165,10 @@ public class UserServiceImpl implements UserService {
                         .build()
         );
 
-        // 设置用户会话
+        // 设置用户会话并缓存
         UserSessionVo userSessionVo = userSessionService.createToken(terminal, userId);
         String accessToken = userSessionVo.getAccessToken();
+        this.cacheUserInfo(userEntity, userSessionVo);
 
         return LoginVo.builder()
                 .terminal(terminal)
@@ -137,6 +176,28 @@ public class UserServiceImpl implements UserService {
                 .token(accessToken)
                 .build();
     }
+
+
+    /**
+     * 缓存用户信息
+     *
+     * @param userSessionVo
+     */
+    private void cacheUserInfo(UserEntity userEntity, UserSessionVo userSessionVo) {
+        // 缓存用户会话信息
+        String accessToken = userSessionVo.getAccessToken();
+        Date grantDate = userSessionVo.getGrantTime(); // 授予时间
+        Date expireTime = userSessionVo.getExpireIn(); // 访问令牌失效时间
+        Random random = new Random();
+        long duration =
+                (Duration.between(grantDate.toInstant(), expireTime.toInstant())
+                        .toMinutes() - random.nextInt(2)) * 60; // 随机减去0-2分钟，进而保证redis中key的有效期时间小于数据库中的key的有效期
+        redisService.put(USER_SESSION + accessToken, accessToken, duration);
+
+        // 缓存用户信息
+        redisService.put(USER_INFO + accessToken, userEntity, duration);
+    }
+
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
@@ -185,9 +246,10 @@ public class UserServiceImpl implements UserService {
                         .build()
         );
 
-        // 设置用户会话
+        // 设置用户会话并缓存
         UserSessionVo userSessionVo = userSessionService.createToken(terminal, userId);
         String accessToken = userSessionVo.getAccessToken();
+        this.cacheUserInfo(userEntity, userSessionVo);
 
         return LoginVo.builder()
                 .terminal(terminal)

@@ -25,8 +25,8 @@ public class ActionEvent extends AbstractEvent implements JyuEvent {
     private String parameter;
 
     @Builder
-    public ActionEvent(String userId, String action, String path, String parameter, String ip) {
-        super(userId, ip);
+    public ActionEvent(String token, String userId, String action, String path, String parameter, String ip) {
+        super(token, userId, ip);
         this.action = action;
         this.parameter = parameter;
         this.path = path;

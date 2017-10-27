@@ -103,6 +103,13 @@ public class UserController extends BaseController {
         );
     }
 
+    /**
+     * TODO 注册直接返回token
+     * @param registerRequest
+     * @param request
+     * @return
+     * @throws JyuException
+     */
     @ApiOperation(value = "注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<BaseResp<String>> register(@RequestBody @Valid RegisterRequest registerRequest,
